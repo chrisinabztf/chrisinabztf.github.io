@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SpielUndSpass on misc it</title><link>https://chrisinabztf.github.io/tags/spielundspass/</link><description>Recent content in SpielUndSpass on misc it</description><generator>Hugo -- gohugo.io</generator><language>de-ch</language><copyright>© {year}</copyright><lastBuildDate>Sun, 21 Feb 2021 17:42:41 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/spielundspass/index.xml" rel="self" type="application/rss+xml"/><item><title>The Art of Code</title><link>https://chrisinabztf.github.io/blog/theartofcode/</link><pubDate>Sun, 21 Feb 2021 17:42:41 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/theartofcode/</guid><description>Ein wunderbarer Vortrag (@21p6167: Merci!) von Dylan Beattie zu Programmiersprachen in &amp;ldquo;allen Farben und Formen&amp;rdquo;.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SpielUndSpass on misc it</title>
+    <link>https://chrisinabztf.github.io/tags/spielundspass/</link>
+    <description>Recent content in SpielUndSpass on misc it</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-ch</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Sun, 21 Feb 2021 17:42:41 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/spielundspass/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Art of Code</title>
+      <link>https://chrisinabztf.github.io/blog/theartofcode/</link>
+      <pubDate>Sun, 21 Feb 2021 17:42:41 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/theartofcode/</guid>
+      <description>Ein wunderbarer Vortrag (@21p6167: Merci!) von Dylan Beattie zu Programmiersprachen in &amp;ldquo;allen Farben und Formen&amp;rdquo;.
 Sein Beitrag zum Thema heisst Rockstar und ist eine Programmiersprache, bei welcher man die Programme mittels Heavy-Metal-Song Lyrics erstellt (Link Github ).
 Die folgenden Song-Lyrics sind ein voll funktionsfähiges Programm:
-Midnight takes your heart and your soul While your heart is as high as your soul Put your heart without your soul into your heart Give back your heart Desire is a lovestruck ladykiller My world is nothing Fire is ice Hate is water Until my world is Desire, Build my world up If Midnight taking my world, Fire is nothing and Midnight taking my world, Hate is nothing Shout &amp;quot;FizzBuzz!</description></item></channel></rss>
+Midnight takes your heart and your soul While your heart is as high as your soul Put your heart without your soul into your heart Give back your heart Desire is a lovestruck ladykiller My world is nothing Fire is ice Hate is water Until my world is Desire, Build my world up If Midnight taking my world, Fire is nothing and Midnight taking my world, Hate is nothing Shout &amp;quot;FizzBuzz!</description>
+    </item>
+    
+  </channel>
+</rss>

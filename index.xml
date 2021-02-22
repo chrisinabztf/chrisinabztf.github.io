@@ -1,8 +1,67 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>misc it</title><link>https://chrisinabztf.github.io/</link><description>Recent content on misc it</description><generator>Hugo -- gohugo.io</generator><language>de-ch</language><copyright>© {year}</copyright><lastBuildDate>Sun, 21 Feb 2021 17:56:24 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>DevOps und SRE: Wie machen denn das die anderen?</title><link>https://chrisinabztf.github.io/blog/howtosreanddevops/</link><pubDate>Sun, 21 Feb 2021 17:56:24 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/howtosreanddevops/</guid><description>Interessante Link-Sammlung, in welcher Beiträge von diversen Unternehmen zu den Themen DevOPs und SRE zusammen gestellt sind.
-How they SRE</description></item><item><title>The Art of Code</title><link>https://chrisinabztf.github.io/blog/theartofcode/</link><pubDate>Sun, 21 Feb 2021 17:42:41 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/theartofcode/</guid><description>Ein wunderbarer Vortrag (@21p6167: Merci!) von Dylan Beattie zu Programmiersprachen in &amp;ldquo;allen Farben und Formen&amp;rdquo;.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>misc it</title>
+    <link>https://chrisinabztf.github.io/</link>
+    <description>Recent content on misc it</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-ch</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Mon, 22 Feb 2021 17:18:31 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Trinkwasserstation gehackt in Florida</title>
+      <link>https://chrisinabztf.github.io/blog/waterstationflorida/</link>
+      <pubDate>Mon, 22 Feb 2021 17:18:31 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/waterstationflorida/</guid>
+      <description>Am 09.02.2021 wurde auf Heise der folgende Artikel zu einem erfolgreichen Hack einer Trinkwasserstation in Florida veröffentlicht (Link ). Gleich darauf folgten Artikel auf 20min und Blick .
+[Quelle: Screenshot Heise]
+Meine ersten Gedanken waren etwas wirr: Gabs auch schon, könnte aber doch was Grosses sein. Stutzig machte mich folgende Bemerkung in der Berichterstattung: &amp;ldquo;Angestellter beobachtete auf seinem Monitor&amp;rdquo;. Geklärt hat sich das als ich über den Artikel aus der Süddeutschen gestolpert bin (12.</description>
+    </item>
+    
+    <item>
+      <title>DevOps und SRE: Wie machen denn das die anderen?</title>
+      <link>https://chrisinabztf.github.io/blog/howtosreanddevops/</link>
+      <pubDate>Sun, 21 Feb 2021 17:56:24 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/howtosreanddevops/</guid>
+      <description>Interessante Link-Sammlung, in welcher Beiträge von diversen Unternehmen zu den Themen DevOPs und SRE zusammen gestellt sind.
+How they SRE </description>
+    </item>
+    
+    <item>
+      <title>The Art of Code</title>
+      <link>https://chrisinabztf.github.io/blog/theartofcode/</link>
+      <pubDate>Sun, 21 Feb 2021 17:42:41 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/theartofcode/</guid>
+      <description>Ein wunderbarer Vortrag (@21p6167: Merci!) von Dylan Beattie zu Programmiersprachen in &amp;ldquo;allen Farben und Formen&amp;rdquo;.
 Sein Beitrag zum Thema heisst Rockstar und ist eine Programmiersprache, bei welcher man die Programme mittels Heavy-Metal-Song Lyrics erstellt (Link Github ).
 Die folgenden Song-Lyrics sind ein voll funktionsfähiges Programm:
-Midnight takes your heart and your soul While your heart is as high as your soul Put your heart without your soul into your heart Give back your heart Desire is a lovestruck ladykiller My world is nothing Fire is ice Hate is water Until my world is Desire, Build my world up If Midnight taking my world, Fire is nothing and Midnight taking my world, Hate is nothing Shout &amp;quot;FizzBuzz!</description></item><item><title>Windows 7 beim SRF</title><link>https://chrisinabztf.github.io/blog/srfwindows7/</link><pubDate>Fri, 19 Feb 2021 13:51:33 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/srfwindows7/</guid><description>Ein unbeabsichtiger Reboot durch eingespielte Patches kann es ja nicht gewesen sein. Aber das EOL von Windows 7 wurde ja auch erst kürzlich vollzogen&amp;hellip;so ein Jahr oder so.
-[Quelle - Screenshot SRF]</description></item><item><title>Artikel zu Ruag</title><link>https://chrisinabztf.github.io/blog/ruagartikel/</link><pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate><guid>https://chrisinabztf.github.io/blog/ruagartikel/</guid><description>Sehr interessanter, 2-teiliger Artikel zum Thema &amp;ldquo;IT-Security bei einem Rüstungskonzern&amp;rdquo;. Hier hier ein paar Stichworte dazu:
-Ungenügende Netzwerk-Architektur/Segmentierung 700 undokumentierte Netzwerkübergänge zu anderen Netzwerken 4918 Tage alte Passworte Versenkte Projekte und ein massiver Stellenabbau beim SOC (Security Operation Center) &amp;hellip; [Quelle: Screenshot ]
-Sind wir doch noch auf den Teil 2 gespannt.</description></item></channel></rss>
+Midnight takes your heart and your soul While your heart is as high as your soul Put your heart without your soul into your heart Give back your heart Desire is a lovestruck ladykiller My world is nothing Fire is ice Hate is water Until my world is Desire, Build my world up If Midnight taking my world, Fire is nothing and Midnight taking my world, Hate is nothing Shout &amp;quot;FizzBuzz!</description>
+    </item>
+    
+    <item>
+      <title>Windows 7 beim SRF</title>
+      <link>https://chrisinabztf.github.io/blog/srfwindows7/</link>
+      <pubDate>Fri, 19 Feb 2021 13:51:33 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/srfwindows7/</guid>
+      <description>Ein unbeabsichtiger Reboot durch eingespielte Patches kann es ja nicht gewesen sein. Aber das EOL von Windows 7 wurde ja auch erst kürzlich vollzogen worden&amp;hellip;so vor einem Jahr oder so.
+Wahrscheinlich müssen wir bald mehr Billag &amp;ldquo;Serafe&amp;rdquo; zahlen, damit sich das SRF aktuelle Betriebssysteme leisten kann.
+[Quelle - Screenshot SRF]</description>
+    </item>
+    
+    <item>
+      <title>Artikel zu Ruag</title>
+      <link>https://chrisinabztf.github.io/blog/ruagartikel/</link>
+      <pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/ruagartikel/</guid>
+      <description>Sehr interessanter, 2-teiliger Artikel zum Thema &amp;ldquo;IT-Security bei einem Rüstungskonzern&amp;rdquo;. Hier hier ein paar Stichworte dazu:
+ Ungenügende Netzwerk-Architektur/Segmentierung 700 undokumentierte Netzwerkübergänge zu anderen Netzwerken 4918 Tage alte Passworte Versenkte Projekte und ein massiver Stellenabbau beim SOC (Security Operation Center) &amp;hellip;  [Quelle: Screenshot ]
+Sind wir doch noch auf den Teil 2 gespannt.</description>
+    </item>
+    
+  </channel>
+</rss>

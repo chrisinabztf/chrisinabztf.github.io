@@ -1,2 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Patching on misc it</title><link>https://chrisinabztf.github.io/tags/patching/</link><description>Recent content in Patching on misc it</description><generator>Hugo -- gohugo.io</generator><language>de-ch</language><copyright>© {year}</copyright><lastBuildDate>Fri, 19 Feb 2021 13:51:33 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/patching/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows 7 beim SRF</title><link>https://chrisinabztf.github.io/blog/srfwindows7/</link><pubDate>Fri, 19 Feb 2021 13:51:33 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/srfwindows7/</guid><description>Ein unbeabsichtiger Reboot durch eingespielte Patches kann es ja nicht gewesen sein. Aber das EOL von Windows 7 wurde ja auch erst kürzlich vollzogen&amp;hellip;so ein Jahr oder so.
-[Quelle - Screenshot SRF]</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Patching on misc it</title>
+    <link>https://chrisinabztf.github.io/tags/patching/</link>
+    <description>Recent content in Patching on misc it</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-ch</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Fri, 19 Feb 2021 13:51:33 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/patching/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows 7 beim SRF</title>
+      <link>https://chrisinabztf.github.io/blog/srfwindows7/</link>
+      <pubDate>Fri, 19 Feb 2021 13:51:33 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/srfwindows7/</guid>
+      <description>Ein unbeabsichtiger Reboot durch eingespielte Patches kann es ja nicht gewesen sein. Aber das EOL von Windows 7 wurde ja auch erst kürzlich vollzogen worden&amp;hellip;so vor einem Jahr oder so.
+Wahrscheinlich müssen wir bald mehr Billag &amp;ldquo;Serafe&amp;rdquo; zahlen, damit sich das SRF aktuelle Betriebssysteme leisten kann.
+[Quelle - Screenshot SRF]</description>
+    </item>
+    
+  </channel>
+</rss>

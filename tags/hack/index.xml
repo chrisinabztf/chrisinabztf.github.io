@@ -1,3 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hack on misc it</title><link>https://chrisinabztf.github.io/tags/hack/</link><description>Recent content in Hack on misc it</description><generator>Hugo -- gohugo.io</generator><language>de-ch</language><copyright>© {year}</copyright><lastBuildDate>Tue, 09 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/hack/index.xml" rel="self" type="application/rss+xml"/><item><title>Artikel zu Ruag</title><link>https://chrisinabztf.github.io/blog/ruagartikel/</link><pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate><guid>https://chrisinabztf.github.io/blog/ruagartikel/</guid><description>Sehr interessanter, 2-teiliger Artikel zum Thema &amp;ldquo;IT-Security bei einem Rüstungskonzern&amp;rdquo;. Hier hier ein paar Stichworte dazu:
-Ungenügende Netzwerk-Architektur/Segmentierung 700 undokumentierte Netzwerkübergänge zu anderen Netzwerken 4918 Tage alte Passworte Versenkte Projekte und ein massiver Stellenabbau beim SOC (Security Operation Center) &amp;hellip; [Quelle: Screenshot ]
-Sind wir doch noch auf den Teil 2 gespannt.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hack on misc it</title>
+    <link>https://chrisinabztf.github.io/tags/hack/</link>
+    <description>Recent content in Hack on misc it</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-ch</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Tue, 09 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/hack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Artikel zu Ruag</title>
+      <link>https://chrisinabztf.github.io/blog/ruagartikel/</link>
+      <pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/ruagartikel/</guid>
+      <description>Sehr interessanter, 2-teiliger Artikel zum Thema &amp;ldquo;IT-Security bei einem Rüstungskonzern&amp;rdquo;. Hier hier ein paar Stichworte dazu:
+ Ungenügende Netzwerk-Architektur/Segmentierung 700 undokumentierte Netzwerkübergänge zu anderen Netzwerken 4918 Tage alte Passworte Versenkte Projekte und ein massiver Stellenabbau beim SOC (Security Operation Center) &amp;hellip;  [Quelle: Screenshot ]
+Sind wir doch noch auf den Teil 2 gespannt.</description>
+    </item>
+    
+  </channel>
+</rss>
