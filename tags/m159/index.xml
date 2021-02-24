@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>de-ch</language>
     <copyright>© {year}</copyright>
-    <lastBuildDate>Mon, 22 Feb 2021 17:18:31 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/m159/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 Feb 2021 07:50:46 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/m159/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GrusligeDinge</title>
+      <link>https://chrisinabztf.github.io/blog/grusligedinge/</link>
+      <pubDate>Wed, 24 Feb 2021 07:50:46 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/grusligedinge/</guid>
+      <description>Es gibt ja Dinge die sind schon gruslig wenn sie richtig funktionieren. Wie zum Beispiel die Idee, dass man die eigenen Kinder während ihrem Aufenthalt im Kindergarten mittels Überwachungskameras beobachten kann. Das man damit die Mitarbeiter auch gleich mitüberwacht ist ja auch klar.
+Aber: So richtig schlimm wird es, wenn solche Dinge dann noch per se schlecht implementiert und kaputt sind. Und sind wir ehrlich: Eine Software ohne Bug gibt es nicht.</description>
+    </item>
+    
     <item>
       <title>Trinkwasserstation gehackt in Florida</title>
       <link>https://chrisinabztf.github.io/blog/waterstationflorida/</link>
