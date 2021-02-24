@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>de-ch</language>
     <copyright>© {year}</copyright>
-    <lastBuildDate>Sun, 21 Feb 2021 17:42:41 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/m404/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 Feb 2021 14:19:44 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/m404/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Software-Architektur, interessanter Artikel</title>
+      <link>https://chrisinabztf.github.io/blog/softwarearchitektur/</link>
+      <pubDate>Wed, 24 Feb 2021 14:19:44 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/softwarearchitektur/</guid>
+      <description>Ein guter Artikel zum Thema &amp;ldquo;Software Architektur&amp;rdquo; (ein Thema das im Schulalltag ziemlich weit weg ist.)
+@21p1154: Merci für den Link!</description>
+    </item>
+    
     <item>
       <title>The Art of Code</title>
       <link>https://chrisinabztf.github.io/blog/theartofcode/</link>
