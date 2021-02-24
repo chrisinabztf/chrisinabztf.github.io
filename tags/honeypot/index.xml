@@ -1,23 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Honeypot on misc it</title>
-    <link>https://chrisinabztf.github.io/tags/honeypot/</link>
-    <description>Recent content in Honeypot on misc it</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>de-ch</language>
-    <copyright>© {year}</copyright>
-    <lastBuildDate>Mon, 22 Feb 2021 17:18:31 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/honeypot/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Trinkwasserstation gehackt in Florida</title>
-      <link>https://chrisinabztf.github.io/blog/waterstationflorida/</link>
-      <pubDate>Mon, 22 Feb 2021 17:18:31 +0100</pubDate>
-      
-      <guid>https://chrisinabztf.github.io/blog/waterstationflorida/</guid>
-      <description>Am 09.02.2021 wurde auf Heise der folgende Artikel zu einem erfolgreichen Hack einer Trinkwasserstation in Florida veröffentlicht (Link ). Gleich darauf folgten Artikel auf 20min und Blick .
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Honeypot on misc it</title><link>https://chrisinabztf.github.io/tags/honeypot/</link><description>Recent content in Honeypot on misc it</description><generator>Hugo -- gohugo.io</generator><language>de-ch</language><copyright>© {year}</copyright><lastBuildDate>Mon, 22 Feb 2021 17:18:31 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/honeypot/index.xml" rel="self" type="application/rss+xml"/><item><title>Trinkwasserstation gehackt in Florida</title><link>https://chrisinabztf.github.io/blog/waterstationflorida/</link><pubDate>Mon, 22 Feb 2021 17:18:31 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/waterstationflorida/</guid><description>Am 09.02.2021 wurde auf Heise der folgende Artikel zu einem erfolgreichen Hack einer Trinkwasserstation in Florida veröffentlicht (Link ). Gleich darauf folgten Artikel auf 20min und Blick .
 [Quelle: Screenshot Heise]
-Meine ersten Gedanken waren etwas wirr: Gabs auch schon, könnte aber doch was Grosses sein. Stutzig machte mich folgende Bemerkung in der Berichterstattung: &amp;ldquo;Angestellter beobachtete auf seinem Monitor&amp;rdquo;. Geklärt hat sich das als ich über den Artikel aus der Süddeutschen gestolpert bin (12.</description>
-    </item>
-    
-  </channel>
-</rss>
+Meine ersten Gedanken waren etwas wirr: Gabs auch schon, könnte aber doch was Grosses sein. Stutzig machte mich folgende Bemerkung in der Berichterstattung: &amp;ldquo;Angestellter beobachtete auf seinem Monitor&amp;rdquo;. Geklärt hat sich das als ich über den Artikel aus der Süddeutschen gestolpert bin (12.</description></item></channel></rss>
