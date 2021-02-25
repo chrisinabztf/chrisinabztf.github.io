@@ -1,10 +1,57 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>M182 on misc it</title><link>https://chrisinabztf.github.io/tags/m182/</link><description>Recent content in M182 on misc it</description><generator>Hugo -- gohugo.io</generator><language>de-ch</language><copyright>© {year}</copyright><lastBuildDate>Wed, 24 Feb 2021 14:24:09 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/m182/index.xml" rel="self" type="application/rss+xml"/><item><title>Swiss Hacking Challenge 2021</title><link>https://chrisinabztf.github.io/blog/swisshackingchallenge/</link><pubDate>Wed, 24 Feb 2021 14:24:09 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/swisshackingchallenge/</guid><description>Wie jedes Jahr findet auch im Jahr 2021 die Swiss Hacking Challenge statt. Hier eine kurze Impression:
-Die Fakten:
-vom 01.03.2021 bis 31.05.2021 Hier anmelden für Newsletter Verschiedene Schwierigkeitsstufen sind möglich Beginner Starters Experts</description></item><item><title>Gruslige Dinge</title><link>https://chrisinabztf.github.io/blog/grusligedinge/</link><pubDate>Wed, 24 Feb 2021 07:50:46 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/grusligedinge/</guid><description>Es gibt ja Dinge, die sind schon gruslig wenn sie richtig funktionieren. Wie zum Beispiel die Idee, dass man die eigenen Kinder während ihrem Aufenthalt im Kindergarten mittels Überwachungskameras beobachten kann. Das man damit die Mitarbeiter auch gleich mitüberwacht ist ja auch klar.
-Aber: So richtig schlimm wird es, wenn solche Dinge dann noch per se schlecht implementiert und kaputt sind. Und sind wir ehrlich: Eine Software ohne Bug gibt es (vermutlich) nicht.</description></item><item><title>Trinkwasserstation gehackt in Florida</title><link>https://chrisinabztf.github.io/blog/waterstationflorida/</link><pubDate>Mon, 22 Feb 2021 17:18:31 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/waterstationflorida/</guid><description>Am 09.02.2021 wurde auf Heise der folgende Artikel zu einem erfolgreichen Hack einer Trinkwasserstation in Florida veröffentlicht (Link ). Gleich darauf folgten Artikel auf 20min und Blick .
-[Quelle: Screenshot Heise]
-Meine ersten Gedanken waren etwas wirr: Gabs auch schon, könnte aber doch was Grosses sein. Stutzig machte mich folgende Bemerkung in der Berichterstattung: &amp;ldquo;Angestellter beobachtete auf seinem Monitor&amp;rdquo;. Geklärt hat sich das als ich über den Artikel aus der Süddeutschen gestolpert bin (12.</description></item><item><title>Windows 7 beim SRF</title><link>https://chrisinabztf.github.io/blog/srfwindows7/</link><pubDate>Fri, 19 Feb 2021 13:51:33 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/srfwindows7/</guid><description>Ein unbeabsichtiger Reboot durch eingespielte Patches kann es ja nicht gewesen sein. Aber das EOL von Windows 7 wurde ja auch erst kürzlich vollzogen worden&amp;hellip;so vor einem Jahr oder so.
-Wahrscheinlich müssen wir bald mehr Billag &amp;ldquo;Serafe&amp;rdquo; zahlen, damit sich das SRF aktuelle Betriebssysteme leisten kann.
-[Quelle - Screenshot SRF]</description></item><item><title>Artikel zu Ruag</title><link>https://chrisinabztf.github.io/blog/ruagartikel/</link><pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate><guid>https://chrisinabztf.github.io/blog/ruagartikel/</guid><description>Sehr interessanter, 2-teiliger Artikel zum Thema &amp;ldquo;IT-Security bei einem Rüstungskonzern&amp;rdquo;. Hier hier ein paar Stichworte dazu:
-Ungenügende Netzwerk-Architektur/Segmentierung 700 undokumentierte Netzwerkübergänge zu anderen Netzwerken 4918 Tage alte Passworte Versenkte Projekte und ein massiver Stellenabbau beim SOC (Security Operation Center) &amp;hellip; [Quelle: Screenshot ]
-Sind wir doch noch auf den Teil 2 gespannt.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>M182 on misc it</title>
+    <link>https://chrisinabztf.github.io/tags/m182/</link>
+    <description>Recent content in M182 on misc it</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-ch</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Wed, 24 Feb 2021 14:24:09 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/m182/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Swiss Hacking Challenge 2021</title>
+      <link>https://chrisinabztf.github.io/blog/swisshackingchallenge/</link>
+      <pubDate>Wed, 24 Feb 2021 14:24:09 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/swisshackingchallenge/</guid>
+      <description>Ein Wettkampf auf verschiedenen Ebenen zum Thema Hacking</description>
+    </item>
+    
+    <item>
+      <title>Gruslige Dinge</title>
+      <link>https://chrisinabztf.github.io/blog/grusligedinge/</link>
+      <pubDate>Wed, 24 Feb 2021 07:50:46 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/grusligedinge/</guid>
+      <description>Überwachen der eigenen Kinder im Kindergarten (und schief geht)</description>
+    </item>
+    
+    <item>
+      <title>Trinkwasserstation gehackt in Florida</title>
+      <link>https://chrisinabztf.github.io/blog/waterstationflorida/</link>
+      <pubDate>Mon, 22 Feb 2021 17:18:31 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/waterstationflorida/</guid>
+      <description>Eine Trinkwasserstation in Florida wurde gehackt. Nun: die Betreiber hatten geradezu darum gebettelt</description>
+    </item>
+    
+    <item>
+      <title>Windows 7 beim SRF</title>
+      <link>https://chrisinabztf.github.io/blog/srfwindows7/</link>
+      <pubDate>Fri, 19 Feb 2021 13:51:33 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/srfwindows7/</guid>
+      <description>...ein Reboot durch das Patching kann es ja nicht sein</description>
+    </item>
+    
+    <item>
+      <title>Artikel zu Ruag</title>
+      <link>https://chrisinabztf.github.io/blog/ruagartikel/</link>
+      <pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/ruagartikel/</guid>
+      <description>2-teiliger Artikel zu den Vorkommnissen bei Ruag - since 2014 ;-)</description>
+    </item>
+    
+  </channel>
+</rss>
