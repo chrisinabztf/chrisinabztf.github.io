@@ -1,1 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>M141 on misc it</title><link>https://chrisinabztf.github.io/tags/m141/</link><description>Recent content in M141 on misc it</description><generator>Hugo -- gohugo.io</generator><language>de-ch</language><copyright>© {year}</copyright><lastBuildDate>Thu, 25 Feb 2021 11:26:58 +0000</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/m141/index.xml" rel="self" type="application/rss+xml"/><item><title>MongoDB, Datenbankdesign Best Practices</title><link>https://chrisinabztf.github.io/blog/mongodbdbdesign/</link><pubDate>Thu, 25 Feb 2021 11:26:58 +0000</pubDate><guid>https://chrisinabztf.github.io/blog/mongodbdbdesign/</guid><description>Datenbankdesign bei MongoDB, ein guter Artikel mit Beispielen</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>M141 on misc it</title>
+    <link>https://chrisinabztf.github.io/tags/m141/</link>
+    <description>Recent content in M141 on misc it</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-ch</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Thu, 25 Feb 2021 11:26:58 +0000</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/m141/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MongoDB, Datenbankdesign Best Practices</title>
+      <link>https://chrisinabztf.github.io/blog/mongodbdbdesign/</link>
+      <pubDate>Thu, 25 Feb 2021 11:26:58 +0000</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/mongodbdbdesign/</guid>
+      <description>Datenbankdesign bei MongoDB, ein guter Artikel mit Beispielen</description>
+    </item>
+    
+  </channel>
+</rss>
