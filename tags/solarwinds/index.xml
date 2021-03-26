@@ -1,1 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Solarwinds on misc it</title><link>https://chrisinabztf.github.io/tags/solarwinds/</link><description>Recent content in Solarwinds on misc it</description><generator>Hugo -- gohugo.io</generator><language>de-ch</language><copyright>© {year}</copyright><lastBuildDate>Tue, 02 Mar 2021 14:57:16 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/solarwinds/index.xml" rel="self" type="application/rss+xml"/><item><title>Tool um Sunburst-Angriff aufzuspüren</title><link>https://chrisinabztf.github.io/blog/toolsunburst/</link><pubDate>Tue, 02 Mar 2021 14:57:16 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/toolsunburst/</guid><description>Microsoft stellt die Applikation für das Auffinden von Sunburst-Anfriffen opensource</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Solarwinds on misc it</title>
+    <link>https://chrisinabztf.github.io/tags/solarwinds/</link>
+    <description>Recent content in Solarwinds on misc it</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-ch</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Tue, 02 Mar 2021 14:57:16 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/solarwinds/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tool um Sunburst-Angriff aufzuspüren</title>
+      <link>https://chrisinabztf.github.io/blog/toolsunburst/</link>
+      <pubDate>Tue, 02 Mar 2021 14:57:16 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/toolsunburst/</guid>
+      <description>Microsoft stellt die Applikation für das Auffinden von Sunburst-Anfriffen opensource</description>
+    </item>
+    
+  </channel>
+</rss>

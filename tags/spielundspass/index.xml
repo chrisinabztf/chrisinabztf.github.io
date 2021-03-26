@@ -1,1 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SpielUndSpass on misc it</title><link>https://chrisinabztf.github.io/tags/spielundspass/</link><description>Recent content in SpielUndSpass on misc it</description><generator>Hugo -- gohugo.io</generator><language>de-ch</language><copyright>© {year}</copyright><lastBuildDate>Tue, 02 Mar 2021 12:47:28 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/spielundspass/index.xml" rel="self" type="application/rss+xml"/><item><title>swisstopo - freie Daten</title><link>https://chrisinabztf.github.io/blog/toposwiss/</link><pubDate>Tue, 02 Mar 2021 12:47:28 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/toposwiss/</guid><description>Swisstopo stellt viele Daten öffentlich zugänglich zur Verfügung</description></item><item><title>Swiss Hacking Challenge 2021</title><link>https://chrisinabztf.github.io/blog/swisshackingchallenge/</link><pubDate>Wed, 24 Feb 2021 14:24:09 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/swisshackingchallenge/</guid><description>Ein Wettkampf auf verschiedenen Ebenen zum Thema Hacking</description></item><item><title>The Art of Code</title><link>https://chrisinabztf.github.io/blog/theartofcode/</link><pubDate>Sun, 21 Feb 2021 17:42:41 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/theartofcode/</guid><description>Wunderbarer Vortrag von Dylan Beattie</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SpielUndSpass on misc it</title>
+    <link>https://chrisinabztf.github.io/tags/spielundspass/</link>
+    <description>Recent content in SpielUndSpass on misc it</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-ch</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Tue, 02 Mar 2021 12:47:28 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/spielundspass/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>swisstopo - freie Daten</title>
+      <link>https://chrisinabztf.github.io/blog/toposwiss/</link>
+      <pubDate>Tue, 02 Mar 2021 12:47:28 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/toposwiss/</guid>
+      <description>Swisstopo stellt viele Daten öffentlich zugänglich zur Verfügung</description>
+    </item>
+    
+    <item>
+      <title>Swiss Hacking Challenge 2021</title>
+      <link>https://chrisinabztf.github.io/blog/swisshackingchallenge/</link>
+      <pubDate>Wed, 24 Feb 2021 14:24:09 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/swisshackingchallenge/</guid>
+      <description>Ein Wettkampf auf verschiedenen Ebenen zum Thema Hacking</description>
+    </item>
+    
+    <item>
+      <title>The Art of Code</title>
+      <link>https://chrisinabztf.github.io/blog/theartofcode/</link>
+      <pubDate>Sun, 21 Feb 2021 17:42:41 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/theartofcode/</guid>
+      <description>Wunderbarer Vortrag von Dylan Beattie</description>
+    </item>
+    
+  </channel>
+</rss>
