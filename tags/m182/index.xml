@@ -1,1 +1,129 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>M182 on misc it</title><link>https://chrisinabztf.github.io/tags/m182/</link><description>Recent content in M182 on misc it</description><generator>Hugo -- gohugo.io</generator><language>de-ch</language><copyright>© {year}</copyright><lastBuildDate>Fri, 12 Mar 2021 16:38:56 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/m182/index.xml" rel="self" type="application/rss+xml"/><item><title>Anleitung fürs Patchen der Exchange Server</title><link>https://chrisinabztf.github.io/blog/exchangebug_anleitung/</link><pubDate>Fri, 12 Mar 2021 16:38:56 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/exchangebug_anleitung/</guid><description>Komplette Anleitung...einfach nur patchen *isnich*</description></item><item><title>NAT-Slipstreaming</title><link>https://chrisinabztf.github.io/blog/natslipstreaming/</link><pubDate>Fri, 12 Mar 2021 09:39:28 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/natslipstreaming/</guid><description>Weshalb die reine Verwendung von Firewalls mit NAT kein echter Schutz sind</description></item><item><title>Exchange Server mit 0-day Lücke</title><link>https://chrisinabztf.github.io/blog/exchangeserver/</link><pubDate>Wed, 10 Mar 2021 13:29:59 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/exchangeserver/</guid><description>Schlimmer als gedacht</description></item><item><title>150000 Überwachungskameras übernommen</title><link>https://chrisinabztf.github.io/blog/150000kameras/</link><pubDate>Wed, 10 Mar 2021 13:29:42 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/150000kameras/</guid><description>...bei Tesla, Gefängnissen und Spitälern</description></item><item><title>Snort bei Cisco</title><link>https://chrisinabztf.github.io/blog/oss_softwarecisco/</link><pubDate>Fri, 05 Mar 2021 12:47:55 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/oss_softwarecisco/</guid><description>Interessant wo überall Open Source Software implementiert ist</description></item><item><title>Tool um Sunburst-Angriff aufzuspüren</title><link>https://chrisinabztf.github.io/blog/toolsunburst/</link><pubDate>Tue, 02 Mar 2021 14:57:16 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/toolsunburst/</guid><description>Microsoft stellt die Applikation für das Auffinden von Sunburst-Anfriffen opensource</description></item><item><title>Swiss Hacking Challenge 2021</title><link>https://chrisinabztf.github.io/blog/swisshackingchallenge/</link><pubDate>Wed, 24 Feb 2021 14:24:09 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/swisshackingchallenge/</guid><description>Ein Wettkampf auf verschiedenen Ebenen zum Thema Hacking</description></item><item><title>Gruslige Dinge</title><link>https://chrisinabztf.github.io/blog/grusligedinge/</link><pubDate>Wed, 24 Feb 2021 07:50:46 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/grusligedinge/</guid><description>Überwachen der eigenen Kinder im Kindergarten (und schief geht)</description></item><item><title>Trinkwasserstation gehackt in Florida</title><link>https://chrisinabztf.github.io/blog/waterstationflorida/</link><pubDate>Mon, 22 Feb 2021 17:18:31 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/waterstationflorida/</guid><description>Eine Trinkwasserstation in Florida wurde gehackt. Nun: die Betreiber hatten geradezu darum gebettelt</description></item><item><title>Windows 7 beim SRF</title><link>https://chrisinabztf.github.io/blog/srfwindows7/</link><pubDate>Fri, 19 Feb 2021 13:51:33 +0100</pubDate><guid>https://chrisinabztf.github.io/blog/srfwindows7/</guid><description>...ein Reboot durch das Patching kann es ja nicht sein</description></item><item><title>Artikel zu Ruag</title><link>https://chrisinabztf.github.io/blog/ruagartikel/</link><pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate><guid>https://chrisinabztf.github.io/blog/ruagartikel/</guid><description>2-teiliger Artikel zu den Vorkommnissen bei Ruag - since 2014 ;-)</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>M182 on misc it</title>
+    <link>https://chrisinabztf.github.io/tags/m182/</link>
+    <description>Recent content in M182 on misc it</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-ch</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Fri, 26 Mar 2021 10:39:00 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/m182/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NetGear - Kritische Lücken</title>
+      <link>https://chrisinabztf.github.io/blog/netgear/</link>
+      <pubDate>Fri, 26 Mar 2021 10:39:00 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/netgear/</guid>
+      <description>Alle Probleme betreffen End-Consumer Geräte.</description>
+    </item>
+    
+    <item>
+      <title>OpenSSL - Kritische Lücken</title>
+      <link>https://chrisinabztf.github.io/blog/openssl/</link>
+      <pubDate>Fri, 26 Mar 2021 10:19:38 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/openssl/</guid>
+      <description>...viel Arbeit</description>
+    </item>
+    
+    <item>
+      <title>Anleitung fürs Patchen der Exchange Server</title>
+      <link>https://chrisinabztf.github.io/blog/exchangebug_anleitung/</link>
+      <pubDate>Fri, 12 Mar 2021 16:38:56 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/exchangebug_anleitung/</guid>
+      <description>Komplette Anleitung...einfach nur patchen *isnich*</description>
+    </item>
+    
+    <item>
+      <title>NAT-Slipstreaming</title>
+      <link>https://chrisinabztf.github.io/blog/natslipstreaming/</link>
+      <pubDate>Fri, 12 Mar 2021 09:39:28 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/natslipstreaming/</guid>
+      <description>Weshalb die reine Verwendung von Firewalls mit NAT kein echter Schutz sind</description>
+    </item>
+    
+    <item>
+      <title>Exchange Server mit 0-day Lücke</title>
+      <link>https://chrisinabztf.github.io/blog/exchangeserver/</link>
+      <pubDate>Wed, 10 Mar 2021 13:29:59 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/exchangeserver/</guid>
+      <description>Schlimmer als gedacht</description>
+    </item>
+    
+    <item>
+      <title>150000 Überwachungskameras übernommen</title>
+      <link>https://chrisinabztf.github.io/blog/150000kameras/</link>
+      <pubDate>Wed, 10 Mar 2021 13:29:42 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/150000kameras/</guid>
+      <description>...bei Tesla, Gefängnissen und Spitälern</description>
+    </item>
+    
+    <item>
+      <title>Snort bei Cisco</title>
+      <link>https://chrisinabztf.github.io/blog/oss_softwarecisco/</link>
+      <pubDate>Fri, 05 Mar 2021 12:47:55 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/oss_softwarecisco/</guid>
+      <description>Interessant wo überall Open Source Software implementiert ist</description>
+    </item>
+    
+    <item>
+      <title>Tool um Sunburst-Angriff aufzuspüren</title>
+      <link>https://chrisinabztf.github.io/blog/toolsunburst/</link>
+      <pubDate>Tue, 02 Mar 2021 14:57:16 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/toolsunburst/</guid>
+      <description>Microsoft stellt die Applikation für das Auffinden von Sunburst-Anfriffen opensource</description>
+    </item>
+    
+    <item>
+      <title>Swiss Hacking Challenge 2021</title>
+      <link>https://chrisinabztf.github.io/blog/swisshackingchallenge/</link>
+      <pubDate>Wed, 24 Feb 2021 14:24:09 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/swisshackingchallenge/</guid>
+      <description>Ein Wettkampf auf verschiedenen Ebenen zum Thema Hacking</description>
+    </item>
+    
+    <item>
+      <title>Gruslige Dinge</title>
+      <link>https://chrisinabztf.github.io/blog/grusligedinge/</link>
+      <pubDate>Wed, 24 Feb 2021 07:50:46 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/grusligedinge/</guid>
+      <description>Überwachen der eigenen Kinder im Kindergarten (und schief geht)</description>
+    </item>
+    
+    <item>
+      <title>Trinkwasserstation gehackt in Florida</title>
+      <link>https://chrisinabztf.github.io/blog/waterstationflorida/</link>
+      <pubDate>Mon, 22 Feb 2021 17:18:31 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/waterstationflorida/</guid>
+      <description>Eine Trinkwasserstation in Florida wurde gehackt. Nun: die Betreiber hatten geradezu darum gebettelt</description>
+    </item>
+    
+    <item>
+      <title>Windows 7 beim SRF</title>
+      <link>https://chrisinabztf.github.io/blog/srfwindows7/</link>
+      <pubDate>Fri, 19 Feb 2021 13:51:33 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/srfwindows7/</guid>
+      <description>...ein Reboot durch das Patching kann es ja nicht sein</description>
+    </item>
+    
+    <item>
+      <title>Artikel zu Ruag</title>
+      <link>https://chrisinabztf.github.io/blog/ruagartikel/</link>
+      <pubDate>Tue, 09 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/ruagartikel/</guid>
+      <description>2-teiliger Artikel zu den Vorkommnissen bei Ruag - since 2014 ;-)</description>
+    </item>
+    
+  </channel>
+</rss>

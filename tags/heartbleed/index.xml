@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Heartbleed on misc it</title>
+    <link>https://chrisinabztf.github.io/tags/heartbleed/</link>
+    <description>Recent content in Heartbleed on misc it</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-ch</language>
+    <copyright>© {year}</copyright>
+    <lastBuildDate>Fri, 26 Mar 2021 10:19:38 +0100</lastBuildDate><atom:link href="https://chrisinabztf.github.io/tags/heartbleed/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OpenSSL - Kritische Lücken</title>
+      <link>https://chrisinabztf.github.io/blog/openssl/</link>
+      <pubDate>Fri, 26 Mar 2021 10:19:38 +0100</pubDate>
+      
+      <guid>https://chrisinabztf.github.io/blog/openssl/</guid>
+      <description>...viel Arbeit</description>
+    </item>
+    
+  </channel>
+</rss>
