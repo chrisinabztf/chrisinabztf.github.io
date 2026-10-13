@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Webkarte</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  /* Vollbild-Karte, schwebende Bedienelemente rechts unten (daumenfreundlich) */
+  :root{
+    --bg:#ffffff; --fg:#1d2a24; --muted:#5b6b63; --line:#d6dfd9;
+    --accent:#1f6f50; --accent-fg:#ffffff; --wa:#1fa855; --me:#2b6cd8;
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#18201c; --fg:#e7eee9; --muted:#9db0a6; --line:#33413a; --accent:#4fb889; --accent-fg:#0d1511; color-scheme:dark }
+  }
+  html,body{height:100%;margin:0}
+  body{font:15px/1.4 var(--font);color:var(--fg);background:var(--bg)}
+  #map{position:fixed;inset:0}
+
+  .fab{position:fixed;right:12px;z-index:1000;display:flex;flex-direction:column;gap:10px;
+       bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+  .fab button{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);
+       background:var(--bg);color:var(--fg);box-shadow:0 2px 8px rgba(0,0,0,.25);
+       display:grid;place-items:center;cursor:pointer}
+  .fab button.on{background:var(--me);color:#fff;border-color:var(--me)}
+  .fab svg{width:24px;height:24px}
+
+  #posbar{position:fixed;left:12px;right:76px;z-index:1000;bottom:calc(24px + env(safe-area-inset-bottom,0px));
+       background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+       box-shadow:0 2px 8px rgba(0,0,0,.2);font-size:13px;max-width:420px}
+  #posbar .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  #posbar .coord{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  #posbar .row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+
+  .btn{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:8px;padding:8px 12px;
+       font:600 14px var(--font);cursor:pointer;text-decoration:none}
+  .btn-wa{background:var(--wa);color:#fff}
+  .btn-sec{background:transparent;color:var(--fg);border:1px solid var(--line)}
+  .btn svg{width:16px;height:16px}
+
+  #settings{position:fixed;z-index:1001;left:12px;right:12px;top:calc(12px + env(safe-area-inset-top,0px));
+       max-width:380px;margin-left:auto;background:var(--bg);border:1px solid var(--line);border-radius:12px;
+       padding:14px 16px;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+  #settings h2{margin:0 0 10px;font-size:16px}
+  #settings label{display:block;margin-top:12px;font-size:13px}
+  #settings input[type=range]{width:100%;margin-top:6px}
+  #settings .val{float:right;font-family:var(--mono)}
+  #settings .hint{font-size:12px;color:var(--muted);margin-top:4px}
+
+  .leaflet-popup-content{margin:12px 14px;font:14px/1.4 var(--font)}
+  .pop h3{margin:0 0 6px;font-size:15px}
+  .pop table{border-collapse:collapse;font-size:12px;margin:6px 0}
+  .pop td{padding:2px 8px 2px 0;vertical-align:top}
+  .pop td:first-child{color:#667}
+  .pop .coord{font-family:var(--mono);font-size:12px}
+  .pop .row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  /* Beschriftung neben den Punkten */
+  .leaflet-tooltip.pt-label{background:transparent;border:0;box-shadow:none;padding:0;
+       font:700 13px var(--font);color:#1d2a24;
+       text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff,0 0 3px #fff}
+  .leaflet-tooltip.pt-label::before{display:none}
+  #toast{position:fixed;left:50%;transform:translateX(-50%);top:calc(16px + env(safe-area-inset-top,0px));
+       z-index:2000;background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px}
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<div id="posbar" hidden>
+  <div class="lbl">Mein Standort</div>
+  <div class="coord" id="mycoord">–</div>
+  <div class="coord" id="mylv95" style="color:var(--muted)"></div>
+  <div class="row">
+    <a class="btn btn-wa" id="myshare" target="_blank" rel="noopener">WhatsApp</a>
+    <button class="btn btn-sec" id="mycopy">Kopieren</button>
+  </div>
+</div>
+
+<div class="fab">
+  <button id="btnSettings" title="Einstellungen" aria-label="Einstellungen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+  </button>
+  <button id="btnLocate" title="Meinen Standort anzeigen" aria-label="Meinen Standort anzeigen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+  </button>
+</div>
+
+<div id="settings" hidden>
+  <h2>Einstellungen</h2>
+  <label for="tol">Tippbereich <span class="val" id="tolVal"></span>
+    <input type="range" id="tol" min="0" max="50" step="1">
+  </label>
+  <div class="hint">Zusätzliche Pixel rund um Punkte und Linien, die noch als Treffer zählen. Grösser = leichter mit dem Finger zu treffen.</div>
+  <label for="size">Punktgrösse <span class="val" id="sizeVal"></span>
+    <input type="range" id="size" min="3" max="20" step="1">
+  </label>
+  <label style="display:flex;gap:8px;align-items:center">
+    <input type="checkbox" id="follow"> Karte folgt meinem Standort
+  </label>
+  <div class="row" style="margin-top:14px;display:flex;justify-content:flex-end">
+    <button class="btn btn-sec" id="closeSettings">Schliessen</button>
+  </div>
+</div>
+
+<div id="toast" hidden></div>
+
+<script>
+/* ================================================================
+   KONFIGURATION – hier anpassen
+   ================================================================ */
+const CONFIG = {
+  title: "Standkarte Lommis",
+  // Entweder: Pfad zu einer GeoJSON-Datei neben dieser HTML-Datei (z.B. "punkte.geojson")
+  dataUrl: "staendelommis.geojson",
+  // Name des Attributs, das als Titel im Popup erscheint
+  nameField: "name",
+  // Attribut, das als Beschriftung neben jedem Punkt steht (null = keine Beschriftung)
+  labelField: "nr",
+  // Standardwerte (Benutzer kann sie in den Einstellungen ändern)
+  defaultTolerance: 15,   // Tippbereich in Pixel
+  defaultPointSize: 8,    // Punktradius in Pixel
+  pointColor: "#1f6f50",
+  // Hintergrundkarte: "osm" oder "swisstopo"
+  basemap: "swisstopo",
+};
+
+/* Oder: GeoJSON direkt hier einfügen (aus QGIS als GeoJSON, EPSG:4326 exportiert) */
+const DATA = {
+  "type": "FeatureCollection",
+  "features": [
+    {"type":"Feature","properties":{"nr":1,"name":"Kapellbrücke","beschreibung":"Beispielpunkt"},"geometry":{"type":"Point","coordinates":[8.3077,47.0516]}},
+    {"type":"Feature","properties":{"nr":2,"name":"Bundeshaus","beschreibung":"Beispielpunkt"},"geometry":{"type":"Point","coordinates":[7.4440,46.9466]}},
+    {"type":"Feature","properties":{"nr":3,"name":"Rheinfall","beschreibung":"Beispielpunkt"},"geometry":{"type":"Point","coordinates":[8.6150,47.6779]}}
+  ]
+};
+/* ================================================================ */
+
+document.title = CONFIG.title;
+
+// --- gespeicherte Einstellungen -------------------------------------
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem("karte_"+k); return v===null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem("karte_"+k, JSON.stringify(v)); }catch(e){} }
+};
+let tolerance = store.get("tol", CONFIG.defaultTolerance);
+let pointSize = store.get("size", CONFIG.defaultPointSize);
+let follow    = store.get("follow", false);
+
+// --- Karte ----------------------------------------------------------
+// Canvas-Renderer: seine "tolerance" bestimmt den Tippbereich für Punkte, Linien und Flächen
+const renderer = L.canvas({ tolerance, padding: 0.5 });
+const map = L.map("map", { renderer, zoomControl: false, tap: true }).setView([46.8, 8.2], 8);
+L.control.zoom({ position: "topleft" }).addTo(map);
+L.control.scale({ imperial: false }).addTo(map);
+
+if (CONFIG.basemap === "swisstopo") {
+  L.tileLayer("https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg", {
+    maxZoom: 19, attribution: '&copy; <a href="https://www.swisstopo.admin.ch/">swisstopo</a>'
+  }).addTo(map);
+} else {
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+}
+
+// --- Hilfsfunktionen ------------------------------------------------
+const fmt = (lat, lon) => `${lat.toFixed(6)}, ${lon.toFixed(6)}`;
+
+// WGS84 → LV95 (Näherungsformel swisstopo, Genauigkeit ~1 m)
+function toLV95(lat, lon){
+  if (lat < 45.7 || lat > 47.9 || lon < 5.8 || lon > 10.6) return null;
+  const p = (lat*3600 - 169028.66)/10000, l = (lon*3600 - 26782.5)/10000;
+  const E = 2600072.37 + 211455.93*l - 10938.51*l*p - 0.36*l*p*p - 44.54*l*l*l;
+  const N = 1200147.07 + 308807.95*p + 3745.25*l*l + 76.63*p*p - 194.56*l*l*p + 119.79*p*p*p;
+  return `${Math.round(E).toLocaleString("de-CH")} / ${Math.round(N).toLocaleString("de-CH")}`;
+}
+
+function shareText(title, lat, lon){
+  return `📍 ${title}\nhttps://www.google.com/maps?q=${lat.toFixed(6)},${lon.toFixed(6)}\nKoordinaten: ${fmt(lat, lon)}`;
+}
+const waLink = (title, lat, lon) => "https://wa.me/?text=" + encodeURIComponent(shareText(title, lat, lon));
+
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.hidden = false;
+  clearTimeout(toast._t); toast._t = setTimeout(() => t.hidden = true, 2200);
+}
+async function copy(text){
+  try { await navigator.clipboard.writeText(text); toast("Kopiert"); }
+  catch(e){ toast("Kopieren nicht möglich"); }
+}
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>';
+
+function popupHtml(title, lat, lon, props){
+  const lv = toLV95(lat, lon);
+  let rows = "";
+  if (props) for (const [k, v] of Object.entries(props)) {
+    if (k === CONFIG.nameField || v === null || v === "") continue;
+    rows += `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`;
+  }
+  return `<div class="pop">
+    <h3>${esc(title)}</h3>
+    ${rows ? `<table>${rows}</table>` : ""}
+    <div class="coord">${fmt(lat, lon)}</div>
+    ${lv ? `<div class="coord" style="color:#667">LV95 ${lv}</div>` : ""}
+    <div class="row">
+      <a class="btn btn-wa" href="${waLink(title, lat, lon)}" target="_blank" rel="noopener">${WA_ICON} WhatsApp</a>
+      <button class="btn btn-sec" data-copy="${esc(shareText(title, lat, lon))}">Kopieren</button>
+    </div></div>`;
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-copy]");
+  if (b) copy(b.getAttribute("data-copy"));
+});
+
+// --- Daten laden ----------------------------------------------------
+let dataLayer;
+function addData(geojson){
+  if (dataLayer) map.removeLayer(dataLayer);
+  dataLayer = L.geoJSON(geojson, {
+    pointToLayer: (f, latlng) => L.circleMarker(latlng, {
+      renderer, radius: pointSize, color: "#fff", weight: 2,
+      fillColor: CONFIG.pointColor, fillOpacity: 1
+    }),
+    style: () => ({ renderer, color: CONFIG.pointColor, weight: 3, fillOpacity: 0.25 }),
+    onEachFeature: (f, layer) => {
+      const title = (f.properties && f.properties[CONFIG.nameField]) || "Punkt";
+      // Beschriftung neben dem Punkt
+      const label = CONFIG.labelField && f.properties ? f.properties[CONFIG.labelField] : null;
+      if (label !== null && label !== undefined && label !== "") {
+        layer.bindTooltip(esc(label), {
+          permanent: true, direction: "right", offset: [pointSize + 2, 0], className: "pt-label"
+        });
+      }
+      layer.on("click", e => {
+        // Punkte: Koordinate des Punktes; Linien/Flächen: angetippte Stelle
+        const ll = layer.getLatLng ? layer.getLatLng() : e.latlng;
+        L.popup({ maxWidth: 300 }).setLatLng(ll)
+          .setContent(popupHtml(title, ll.lat, ll.lng, f.properties)).openOn(map);
+        L.DomEvent.stop(e);
+      });
+    }
+  }).addTo(map);
+  const b = dataLayer.getBounds();
+  if (b.isValid()) map.fitBounds(b, { padding: [40, 40], maxZoom: 16 });
+}
+if (CONFIG.dataUrl) {
+  fetch(CONFIG.dataUrl).then(r => r.json()).then(addData)
+    .catch(() => toast("GeoJSON konnte nicht geladen werden"));
+} else {
+  addData(DATA);
+}
+
+// Beliebige Stelle lange drücken / Rechtsklick → Position teilen
+map.on("contextmenu", e => {
+  L.popup({ maxWidth: 300 }).setLatLng(e.latlng)
+    .setContent(popupHtml("Gewählte Position", e.latlng.lat, e.latlng.lng)).openOn(map);
+});
+
+// --- Eigener Standort -----------------------------------------------
+let watchId = null, meMarker, meCircle, lastPos, firstFix = true;
+const btnLocate = document.getElementById("btnLocate");
+const posbar = document.getElementById("posbar");
+
+function onPos(p){
+  const { latitude: lat, longitude: lon, accuracy } = p.coords;
+  lastPos = { lat, lon };
+  const ll = [lat, lon];
+  if (!meMarker) {
+    meCircle = L.circle(ll, { radius: accuracy, color: "#2b6cd8", weight: 1, fillOpacity: 0.12, interactive: false }).addTo(map);
+    meMarker = L.circleMarker(ll, { renderer, radius: 8, color: "#fff", weight: 3, fillColor: "#2b6cd8", fillOpacity: 1 }).addTo(map);
+    meMarker.on("click", () => L.popup().setLatLng(meMarker.getLatLng())
+      .setContent(popupHtml("Mein Standort", lastPos.lat, lastPos.lon)).openOn(map));
+  } else {
+    meMarker.setLatLng(ll); meCircle.setLatLng(ll).setRadius(accuracy);
+  }
+  if (firstFix || follow) { map.setView(ll, firstFix ? Math.max(map.getZoom(), 16) : map.getZoom()); firstFix = false; }
+
+  document.getElementById("mycoord").textContent = `${fmt(lat, lon)}  ±${Math.round(accuracy)} m`;
+  const lv = toLV95(lat, lon);
+  document.getElementById("mylv95").textContent = lv ? "LV95 " + lv : "";
+  document.getElementById("myshare").href = waLink("Mein Standort", lat, lon);
+  document.getElementById("myshare").innerHTML = WA_ICON + " WhatsApp";
+  posbar.hidden = false;
+}
+function onErr(err){
+  const msg = { 1: "Standortzugriff wurde verweigert. Bitte in den Browser-Einstellungen erlauben.",
+                2: "Standort nicht verfügbar.", 3: "Standortabfrage hat zu lange gedauert." }[err.code] || "Standortfehler";
+  toast(msg); stopLocate();
+}
+function startLocate(){
+  if (!("geolocation" in navigator)) return toast("Dieser Browser unterstützt keine Standortabfrage");
+  if (!window.isSecureContext) toast("Standort funktioniert nur über https://");
+  firstFix = true;
+  watchId = navigator.geolocation.watchPosition(onPos, onErr, { enableHighAccuracy: true, maximumAge: 5000, timeout: 20000 });
+  btnLocate.classList.add("on");
+}
+function stopLocate(){
+  if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+  watchId = null; btnLocate.classList.remove("on"); posbar.hidden = true;
+  if (meMarker) { map.removeLayer(meMarker); map.removeLayer(meCircle); meMarker = meCircle = null; }
+}
+btnLocate.onclick = () => watchId === null ? startLocate() : stopLocate();
+document.getElementById("mycopy").onclick = () =>
+  lastPos && copy(shareText("Mein Standort", lastPos.lat, lastPos.lon));
+map.on("dragstart", () => { if (follow) { follow = false; document.getElementById("follow").checked = false; store.set("follow", false); } });
+
+// --- Einstellungen --------------------------------------------------
+const $tol = document.getElementById("tol"), $size = document.getElementById("size"), $follow = document.getElementById("follow");
+$tol.value = tolerance; $size.value = pointSize; $follow.checked = follow;
+const showVals = () => {
+  document.getElementById("tolVal").textContent = tolerance + " px";
+  document.getElementById("sizeVal").textContent = pointSize + " px";
+};
+showVals();
+$tol.oninput = () => {
+  tolerance = +$tol.value;
+  renderer.options.tolerance = tolerance;   // wirkt sofort
+  store.set("tol", tolerance); showVals();
+};
+$size.oninput = () => {
+  pointSize = +$size.value;
+  if (dataLayer) dataLayer.eachLayer(l => {
+    if (l.setRadius) l.setRadius(pointSize);
+    const t = l.getTooltip && l.getTooltip();
+    if (t) { t.options.offset = [pointSize + 2, 0]; l.closeTooltip(); l.openTooltip(); }
+  });
+  store.set("size", pointSize); showVals();
+};
+$follow.onchange = () => { follow = $follow.checked; store.set("follow", follow); };
+document.getElementById("btnSettings").onclick = () => {
+  const s = document.getElementById("settings"); s.hidden = !s.hidden;
+};
+document.getElementById("closeSettings").onclick = () => document.getElementById("settings").hidden = true;
+</script>
+</body>
+</html>
