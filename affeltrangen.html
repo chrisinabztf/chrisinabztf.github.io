@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Webkarte</title>
+<title>Standkarte Affeltrangen</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -66,7 +66,7 @@
        font:700 13px var(--font);color:#1d2a24;
        text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff,0 0 3px #fff}
   .leaflet-tooltip.pt-label::before{display:none}
-  #toast{position:fixed;left:50%;transform:translateX(-50%);top:calc(16px + env(safe-area-inset-top,0px));
+  #toast{max-width:90vw;text-align:center;position:fixed;left:50%;transform:translateX(-50%);top:calc(16px + env(safe-area-inset-top,0px));
        z-index:2000;background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px}
 </style>
 </head>
@@ -113,6 +113,14 @@
 <div id="toast" hidden></div>
 
 <script>
+/* Zeigt Fehler direkt auf der Karte an (z.B. Tippfehler beim Einfügen des GeoJSON) */
+window.addEventListener("error", e => {
+  const t = document.getElementById("toast");
+  t.textContent = "Fehler in der Datei" + (e.lineno ? " (Zeile " + e.lineno + ")" : "") + ": " + e.message;
+  t.hidden = false; t.style.maxWidth = "90vw";
+});
+</script>
+<script>
 /* ================================================================
    DATEN – GeoJSON aus QGIS (Exportieren → Objekte speichern als…,
    Format GeoJSON, KBS EPSG:4326). Inhalt der Datei hier einfügen.
@@ -120,19 +128,134 @@
 const DATA_PUNKTE = {
   "type": "FeatureCollection",
   "features": [
-    {"type":"Feature","properties":{"nr":1,"name":"Kapellbrücke","beschreibung":"Beispielpunkt"},"geometry":{"type":"Point","coordinates":[8.3077,47.0516]}},
-    {"type":"Feature","properties":{"nr":2,"name":"Bundeshaus","beschreibung":"Beispielpunkt"},"geometry":{"type":"Point","coordinates":[7.4440,46.9466]}},
-    {"type":"Feature","properties":{"nr":3,"name":"Rheinfall","beschreibung":"Beispielpunkt"},"geometry":{"type":"Point","coordinates":[8.6150,47.6779]}}
+    {"type":"Feature","properties":{"fid_1":1,"fid":17,"KooX":2721812,"KooY":1265414,"ID_2":"412","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0562636,47.5281647]}},
+    {"type":"Feature","properties":{"fid_1":2,"fid":20,"KooX":2721962,"KooY":1265376,"ID_2":"405","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0582431,47.5277955]}},
+    {"type":"Feature","properties":{"fid_1":3,"fid":21,"KooX":2722081,"KooY":1265428,"ID_2":"406","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0598299,47.5282359]}},
+    {"type":"Feature","properties":{"fid_1":4,"fid":22,"KooX":2722132,"KooY":1265294,"ID_2":"407","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0604822,47.5270285]}},
+    {"type":"Feature","properties":{"fid_1":5,"fid":23,"KooX":2722383,"KooY":1265190,"ID_2":"408","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0637754,47.5260405]}},
+    {"type":"Feature","properties":{"fid_1":6,"fid":24,"KooX":2722203,"KooY":1265036,"ID_2":"516","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0613433,47.5246936]}},
+    {"type":"Feature","properties":{"fid_1":7,"fid":25,"KooX":2722048,"KooY":1264979,"ID_2":"514","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0592739,47.5242099]}},
+    {"type":"Feature","properties":{"fid_1":8,"fid":26,"KooX":2722176,"KooY":1264973,"ID_2":"512","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0609709,47.5241338]}},
+    {"type":"Feature","properties":{"fid_1":9,"fid":27,"KooX":2722051,"KooY":1264891,"ID_2":"513","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0592959,47.5234143]}},
+    {"type":"Feature","properties":{"fid_1":10,"fid":28,"KooX":2722222,"KooY":1264879,"ID_2":"511","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0615627,47.5232779]}},
+    {"type":"Feature","properties":{"fid_1":11,"fid":29,"KooX":2722138,"KooY":1264735,"ID_2":"510","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0603958,47.5219967]}},
+    {"type":"Feature","properties":{"fid_1":12,"fid":30,"KooX":2721953,"KooY":1264887,"ID_2":"515","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0579824,47.5234013]}},
+    {"type":"Feature","properties":{"fid_1":13,"fid":31,"KooX":2721986,"KooY":1264685,"ID_2":"509","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0583748,47.521575]}},
+    {"type":"Feature","properties":{"fid_1":14,"fid":32,"KooX":2722220,"KooY":1264679,"ID_2":"508","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0614768,47.5214793]}},
+    {"type":"Feature","properties":{"fid_1":15,"fid":34,"KooX":2722306,"KooY":1264610,"ID_2":"506","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0625986,47.5208429]}},
+    {"type":"Feature","properties":{"fid_1":16,"fid":35,"KooX":2722318,"KooY":1264460,"ID_2":"502","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0627132,47.5194924]}},
+    {"type":"Feature","properties":{"fid_1":17,"fid":36,"KooX":2722440,"KooY":1264541,"ID_2":"501","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0643558,47.5201976]}},
+    {"type":"Feature","properties":{"fid_1":18,"fid":37,"KooX":2722575,"KooY":1264648,"ID_2":"504","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0661764,47.5211347]}},
+    {"type":"Feature","properties":{"fid_1":19,"fid":38,"KooX":2722441,"KooY":1264713,"ID_2":"505","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0644186,47.5217454]}},
+    {"type":"Feature","properties":{"fid_1":20,"fid":39,"KooX":2722312,"KooY":1264776,"ID_2":"507","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0627219,47.5223343]}},
+    {"type":"Feature","properties":{"fid_1":21,"fid":41,"KooX":2720296,"KooY":1266405,"ID_2":"350 - variabel","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0364035,47.5373573]}},
+    {"type":"Feature","properties":{"fid_1":22,"fid":49,"KooX":2721061,"KooY":1265905,"ID_2":"303","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0464244,47.5327208]}},
+    {"type":"Feature","properties":{"fid_1":23,"fid":50,"KooX":2721333,"KooY":1266147,"ID_2":"305","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0500952,47.5348424]}},
+    {"type":"Feature","properties":{"fid_1":24,"fid":51,"KooX":2721408,"KooY":1266091,"ID_2":"308","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0510764,47.5343233]}},
+    {"type":"Feature","properties":{"fid_1":25,"fid":54,"KooX":2721289,"KooY":1266423,"ID_2":"366","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0495973,47.5373349]}},
+    {"type":"Feature","properties":{"fid_1":26,"fid":63,"KooX":2719894,"KooY":1266827,"ID_2":"215A","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0311827,47.5412251]}},
+    {"type":"Feature","properties":{"fid_1":27,"fid":66,"KooX":2719568,"KooY":1266725,"ID_2":"223","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0268173,47.5403627]}},
+    {"type":"Feature","properties":{"fid_1":28,"fid":72,"KooX":2718764,"KooY":1267084,"ID_2":"102","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0162354,47.5437392]}},
+    {"type":"Feature","properties":{"fid_1":29,"fid":73,"KooX":2718665,"KooY":1267015,"ID_2":"101","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0149054,47.5431382]}},
+    {"type":"Feature","properties":{"fid_1":30,"fid":74,"KooX":2718722,"KooY":1266696,"ID_2":"114","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0155852,47.5402603]}},
+    {"type":"Feature","properties":{"fid_1":31,"fid":75,"KooX":2718727,"KooY":1266820,"ID_2":"105","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0156823,47.541373]}},
+    {"type":"Feature","properties":{"fid_1":32,"fid":76,"KooX":2718567,"KooY":1266803,"ID_2":"106","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0135504,47.5412465]}},
+    {"type":"Feature","properties":{"fid_1":33,"fid":77,"KooX":2718661,"KooY":1266694,"ID_2":"113","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0147656,47.5402505]}},
+    {"type":"Feature","properties":{"fid_1":34,"fid":78,"KooX":2718623,"KooY":1266569,"ID_2":"122","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0142322,47.5391284]}},
+    {"type":"Feature","properties":{"fid_1":35,"fid":80,"KooX":2718457,"KooY":1266694,"ID_2":"108","Kugel":true},"geometry":{"type":"Point","coordinates":[9.012061,47.5402854]}},
+    {"type":"Feature","properties":{"fid_1":36,"fid":81,"KooX":2718454,"KooY":1266528,"ID_2":"112","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0119751,47.5387934]}},
+    {"type":"Feature","properties":{"fid_1":37,"fid":82,"KooX":2718340,"KooY":1266474,"ID_2":"110","Kugel":true},"geometry":{"type":"Point","coordinates":[9.010452,47.5383338]}},
+    {"type":"Feature","properties":{"fid_1":38,"fid":83,"KooX":2718386,"KooY":1266235,"ID_2":"126","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0109927,47.5361713]}},
+    {"type":"Feature","properties":{"fid_1":39,"fid":84,"KooX":2720192,"KooY":1266461,"ID_2":"352","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0350386,47.5378771]}},
+    {"type":"Feature","properties":{"fid_1":40,"fid":85,"KooX":2720277,"KooY":1266538,"ID_2":"351","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0361836,47.5385515]}},
+    {"type":"Feature","properties":{"fid_1":41,"fid":211,"KooX":2719304,"KooY":1266467,"ID_2":"211","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0232409,47.5380899]}},
+    {"type":"Feature","properties":{"fid_1":42,"fid":214,"KooX":2719922,"KooY":1266658,"ID_2":"214","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0314982,47.5396971]}},
+    {"type":"Feature","properties":{"fid_1":43,"fid":215,"KooX":2719844,"KooY":1266651,"ID_2":"215","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0304691,47.5396465]}},
+    {"type":"Feature","properties":{"fid_1":44,"fid":216,"KooX":2719464,"KooY":1266527,"ID_2":"216","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0253822,47.5386002]}},
+    {"type":"Feature","properties":{"fid_1":45,"fid":217,"KooX":2719540,"KooY":1266580,"ID_2":"217","Kugel":false},"geometry":{"type":"Point","coordinates":[9.02641,47.5390682]}},
+    {"type":"Feature","properties":{"fid_1":46,"fid":218,"KooX":2719290,"KooY":1266336,"ID_2":"218","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0230199,47.5369177]}},
+    {"type":"Feature","properties":{"fid_1":47,"fid":219,"KooX":2719411,"KooY":1266566,"ID_2":"219","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0246981,47.5389616]}},
+    {"type":"Feature","properties":{"fid_1":48,"fid":220,"KooX":2719390,"KooY":1266690,"ID_2":"220","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0244426,47.540078]}},
+    {"type":"Feature","properties":{"fid_1":49,"fid":221,"KooX":2719416,"KooY":1266853,"ID_2":"221","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0248398,47.541547]}},
+    {"type":"Feature","properties":{"fid_1":50,"fid":224,"KooX":2719488,"KooY":1266942,"ID_2":"224","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0258152,47.5423264]}},
+    {"type":"Feature","properties":{"fid_1":51,"fid":302,"KooX":2721093,"KooY":1266009,"ID_2":"302","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0468761,47.5336477]}},
+    {"type":"Feature","properties":{"fid_1":52,"fid":361,"KooX":2720731,"KooY":1265899,"ID_2":"361","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0420445,47.5327261]}},
+    {"type":"Feature","properties":{"fid_1":53,"fid":362,"KooX":2720450,"KooY":1266182,"ID_2":"372","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0383876,47.5353203]}},
+    {"type":"Feature","properties":{"fid_1":54,"fid":363,"KooX":2720731,"KooY":1265994,"ID_2":"363","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0420656,47.5335824]}},
+    {"type":"Feature","properties":{"fid_1":55,"fid":365,"KooX":2720829,"KooY":1266165,"ID_2":"365","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0434137,47.5350979]}},
+    {"type":"Feature","properties":{"fid_1":56,"fid":368,"KooX":2721144,"KooY":1266305,"ID_2":"368","Kugel":false},"geometry":{"type":"Point","coordinates":[9.047636,47.5362994]}},
+    {"type":"Feature","properties":{"fid_1":57,"fid":369,"KooX":2720983,"KooY":1266044,"ID_2":"369","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0454264,47.5339789]}},
+    {"type":"Feature","properties":{"fid_1":58,"fid":373,"KooX":2720529,"KooY":1266156,"ID_2":"373","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0394281,47.5350725]}},
+    {"type":"Feature","properties":{"fid_1":59,"fid":374,"KooX":2720605,"KooY":1266247,"ID_2":"374","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0404684,47.5358774]}},
+    {"type":"Feature","properties":{"fid_1":60,"fid":375,"KooX":2720690,"KooY":1266316,"ID_2":"375","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0416071,47.5364789]}},
+    {"type":"Feature","properties":{"fid_1":61,"fid":376,"KooX":2720784,"KooY":1266415,"ID_2":"376","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0428858,47.537358]}},
+    {"type":"Feature","properties":{"fid_1":62,"fid":381,"KooX":2721198,"KooY":1266730,"ID_2":"381","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0484703,47.5401129]}},
+    {"type":"Feature","properties":{"fid_1":63,"fid":382,"KooX":2721079,"KooY":1266771,"ID_2":"382","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0468999,47.5404998]}},
+    {"type":"Feature","properties":{"fid_1":64,"fid":384,"KooX":2720850,"KooY":1266571,"ID_2":"384","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0438027,47.5387407]}},
+    {"type":"Feature","properties":{"fid_1":65,"fid":385,"KooX":2720922,"KooY":1266472,"ID_2":"385","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0447365,47.5378454]}},
+    {"type":"Feature","properties":{"fid_1":66,"fid":386,"KooX":2721123,"KooY":1266496,"ID_2":"386","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0474085,47.5380223]}},
+    {"type":"Feature","properties":{"fid_1":67,"fid":387,"KooX":2720904,"KooY":1266317,"ID_2":"387","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0444543,47.5364543]}},
+    {"type":"Feature","properties":{"fid_1":68,"fid":388,"KooX":2721135,"KooY":1266367,"ID_2":"388","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0475369,47.5368557]}},
+    {"type":"Feature","properties":{"fid_1":69,"fid":389,"KooX":2721008,"KooY":1266645,"ID_2":"383","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0459166,47.5393817]}},
+    {"type":"Feature","properties":{"fid_1":70,"fid":3645,"KooX":2720999,"KooY":1266153,"ID_2":"364","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0456701,47.5349555]}},
+    {"type":"Feature","properties":{"fid_1":71,"fid":3692,"KooX":2721091,"KooY":1266158,"ID_2":"369A","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0468943,47.5349907]}},
+    {"type":"Feature","properties":{"fid_1":72,"fid":3899,"KooX":2721256,"KooY":1266535,"ID_2":"389","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0491878,47.5383485]}},
+    {"type":"Feature","properties":{"fid_1":73,"fid":555556,"KooX":2718601,"KooY":1266385,"ID_2":"120","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0138858,47.5374856]}},
+    {"type":"Feature","properties":{"fid_1":74,"fid":555557,"KooX":2718712,"KooY":1266597,"ID_2":"121","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0154251,47.5393639]}},
+    {"type":"Feature","properties":{"fid_1":75,"fid":555558,"KooX":2721629,"KooY":1265720,"ID_2":"312","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0539089,47.530947]}},
+    {"type":"Feature","properties":{"fid_1":76,"fid":555559,"KooX":2721551,"KooY":1265727,"ID_2":"311","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0528796,47.5310235]}},
+    {"type":"Feature","properties":{"fid_1":77,"fid":555560,"KooX":2721794,"KooY":1265610,"ID_2":"314","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0560724,47.5299328]}},
+    {"type":"Feature","properties":{"fid_1":78,"fid":555561,"KooX":2721653,"KooY":1265569,"ID_2":"313","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0541886,47.5295892]}},
+    {"type":"Feature","properties":{"fid_1":79,"fid":555562,"KooX":2721224,"KooY":1266112,"ID_2":"304","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0486431,47.5345512]}},
+    {"type":"Feature","properties":{"fid_1":80,"fid":555563,"KooX":2721189,"KooY":1265938,"ID_2":"306","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0481388,47.5329886]}},
+    {"type":"Feature","properties":{"fid_1":81,"fid":555564,"KooX":2721394,"KooY":1266017,"ID_2":"307","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0508803,47.5336605]}},
+    {"type":"Feature","properties":{"fid_1":82,"fid":555565,"KooX":2721513,"KooY":1266080,"ID_2":"309","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0524678,47.5342113]}},
+    {"type":"Feature","properties":{"fid_1":83,"fid":555566,"KooX":2721549,"KooY":1266143,"ID_2":"310","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0529695,47.5347708]}},
+    {"type":"Feature","properties":{"fid_1":84,"fid":555568,"KooX":2718524,"KooY":1266434,"ID_2":"130","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0128774,47.5379351]}},
+    {"type":"Feature","properties":{"fid_1":85,"fid":555569,"KooX":2723469,"KooY":1265668,"ID_2":"802","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0783311,47.530136]}},
+    {"type":"Feature","properties":{"fid_1":86,"fid":555570,"KooX":2723060,"KooY":1265286,"ID_2":"813","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0727937,47.5267798]}},
+    {"type":"Feature","properties":{"fid_1":87,"fid":555571,"KooX":2723628,"KooY":1265522,"ID_2":"803","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0804062,47.5287913]}},
+    {"type":"Feature","properties":{"fid_1":88,"fid":555572,"KooX":2723273,"KooY":1265443,"ID_2":"808","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0756612,47.5281486]}},
+    {"type":"Feature","properties":{"fid_1":89,"fid":555574,"KooX":2723565,"KooY":1265170,"ID_2":"805","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0794686,47.5256434]}},
+    {"type":"Feature","properties":{"fid_1":90,"fid":555575,"KooX":2723187,"KooY":1265269,"ID_2":"807","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0744817,47.5266052]}},
+    {"type":"Feature","properties":{"fid_1":91,"fid":555576,"KooX":2723293,"KooY":1265196,"ID_2":"811","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0758596,47.525927]}},
+    {"type":"Feature","properties":{"fid_1":92,"fid":555577,"KooX":2723088,"KooY":1265152,"ID_2":"809","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0731229,47.5255699]}},
+    {"type":"Feature","properties":{"fid_1":93,"fid":555578,"KooX":2723082,"KooY":1265071,"ID_2":"810","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0730255,47.5248442]}},
+    {"type":"Feature","properties":{"fid_1":94,"fid":555579,"KooX":2723225,"KooY":1264988,"ID_2":"812","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0749016,47.5240707]}},
+    {"type":"Feature","properties":{"fid_1":95,"fid":555580,"KooX":2723591,"KooY":1265760,"ID_2":"801","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0799686,47.5309426]}},
+    {"type":"Feature","properties":{"fid_1":96,"fid":555581,"KooX":2723559,"KooY":1265215,"ID_2":"806","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0793976,47.5260462]}},
+    {"type":"Feature","properties":{"fid_1":97,"fid":555582,"KooX":2723728,"KooY":1265306,"ID_2":"814","Kugel":true},"geometry":{"type":"Point","coordinates":[9.081671,47.5268331]}},
+    {"type":"Feature","properties":{"fid_1":98,"fid":555583,"KooX":2721712,"KooY":1265282,"ID_2":"401","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0548914,47.5269919]}},
+    {"type":"Feature","properties":{"fid_1":99,"fid":555584,"KooX":2721789,"KooY":1265335,"ID_2":"403","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0559323,47.5274609]}},
+    {"type":"Feature","properties":{"fid_1":100,"fid":555585,"KooX":2721853,"KooY":1265251,"ID_2":"404","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0567613,47.5266907]}},
+    {"type":"Feature","properties":{"fid_1":101,"fid":555586,"KooX":2722284,"KooY":1265453,"ID_2":"420","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0625385,47.5284265]}},
+    {"type":"Feature","properties":{"fid_1":102,"fid":555588,"KooX":2722369,"KooY":1265427,"ID_2":"422","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0636645,47.5281757]}},
+    {"type":"Feature","properties":{"fid_1":103,"fid":555589,"KooX":2722033,"KooY":1265476,"ID_2":"409","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0592157,47.5286786]}},
+    {"type":"Feature","properties":{"fid_1":104,"fid":555590,"KooX":2722107,"KooY":1265582,"ID_2":"410","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0602279,47.5296182]}},
+    {"type":"Feature","properties":{"fid_1":105,"fid":555592,"KooX":2721973,"KooY":1265491,"ID_2":"411","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0584237,47.5288268]}},
+    {"type":"Feature","properties":{"fid_1":106,"fid":555593,"KooX":2718629,"KooY":1266781,"ID_2":"107","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0143691,47.5410393]}},
+    {"type":"Feature","properties":{"fid_1":107,"fid":555594,"KooX":2718436,"KooY":1266483,"ID_2":"111","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0117227,47.5383909]}},
+    {"type":"Feature","properties":{"fid_1":108,"fid":555595,"KooX":2718469,"KooY":1266323,"ID_2":"125","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0121263,47.5369507]}},
+    {"type":"Feature","properties":{"fid_1":109,"fid":555596,"KooX":2718446,"KooY":1266170,"ID_2":"131","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0117768,47.535574]}},
+    {"type":"Feature","properties":{"fid_1":110,"fid":555597,"KooX":2719216,"KooY":1266623,"ID_2":"212","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0221236,47.5395072]}},
+    {"type":"Feature","properties":{"fid_1":111,"fid":555598,"KooX":2722335,"KooY":1265443,"ID_2":"420A","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0632139,47.5283298]}},
+    {"type":"Feature","properties":{"fid_1":112,"fid":555599,"KooX":2719480,"KooY":1266781,"ID_2":"222","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0256736,47.5408841]}},
+    {"type":"Feature","properties":{"fid_1":113,"fid":555601,"KooX":2719353,"KooY":1266435,"ID_2":"210","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0238855,47.5377935]}},
+    {"type":"Feature","properties":{"fid_1":114,"fid":555602,"KooX":2723348,"KooY":1265606,"ID_2":"816","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0767082,47.5296026]}},
+    {"type":"Feature","properties":{"fid_1":115,"fid":555603,"KooX":2723001,"KooY":1265157,"ID_2":"815","Kugel":false},"geometry":{"type":"Point","coordinates":[9.071977,47.5256263]}},
+    {"type":"Feature","properties":{"fid_1":116,"fid":555604,"KooX":2721702,"KooY":1265339,"ID_2":"400","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0547777,47.5275056]}},
+    {"type":"Feature","properties":{"fid_1":117,"fid":555605,"KooX":2722125,"KooY":1265090,"ID_2":"517","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0603275,47.5251877]}},
+    {"type":"Feature","properties":{"fid_1":118,"fid":555606,"KooX":2718589,"KooY":1266463,"ID_2":"132","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0137523,47.5381882]}},
+    {"type":"Feature","properties":{"fid_1":119,"fid":555607,"KooX":2718471,"KooY":1266697,"ID_2":"108A","Kugel":true},"geometry":{"type":"Point","coordinates":[9.0122483,47.5403146]}},
+    {"type":"Feature","properties":{"fid_1":120,"fid":555611,"KooX":2723903,"KooY":1265427,"ID_2":"817","Kugel":false},"geometry":{"type":"Point","coordinates":[9.0840261,47.5278896]}}
   ]
 };
 
+// Sammelplätze Affeltrangen: Inhalt von Sammelplaetze_Affeltrangen.geojson hier einfügen
 const DATA_SAMMELPLAETZE = {
   "type": "FeatureCollection",
   "features": [
-    {"type":"Feature","properties":{"nr":"S1","name":"Inseli","bemerkung":"Beispiel-Sammelplatz"},"geometry":{"type":"Point","coordinates":[8.3112,47.0497]}},
-    {"type":"Feature","properties":{"nr":"S2","name":"Kleine Schanze","bemerkung":"Beispiel-Sammelplatz"},"geometry":{"type":"Point","coordinates":[7.4405,46.9457]}},
-    {"type":"Feature","properties":{"nr":"S3","name":"Schlössli Wörth","bemerkung":"Beispiel-Sammelplatz"},"geometry":{"type":"Point","coordinates":[8.6125,47.6772]}}
-  ]
+      ]
 };
 
 /* ================================================================
@@ -149,13 +272,17 @@ const CONFIG = {
   //   symbol     : "circle" | "square" | "triangle" | "diamond" | "star"
   //   color      : Füllfarbe
   //   sizeFactor : Grösse relativ zur eingestellten Punktgrösse (1 = gleich gross)
+  //   titlePrefix: Text vor dem Titel im Popup (z.B. "Stand ")
+  //   hideFields : Attribute, die im Popup nicht erscheinen sollen
+  //   labelMinZoom: Beschriftung erst ab dieser Zoomstufe zeigen (verhindert Überlappen)
   layers: [
-    { name: "Stände",       data: DATA_PUNKTE,        dataUrl: "staendeaffeltrangen.geojson",
-      nameField: "name", labelField: "ID_2",
+    { name: "Stände",       data: DATA_PUNKTE,        dataUrl: null,
+      nameField: "ID_2", titlePrefix: "Stand ", labelField: "ID_2", labelMinZoom: 16,
+      hideFields: ["fid_1", "fid", "KooX", "KooY"],
       symbol: "circle", color: "#1f6f50", sizeFactor: 1 },
 
-    { name: "Sammelplätze", data: DATA_SAMMELPLAETZE, dataUrl: "Sammelplaetze_Affeltrangen.geojson",
-      nameField: "name", labelField: "fid",
+    { name: "Sammelplätze", data: DATA_SAMMELPLAETZE, dataUrl: null,
+      nameField: "nr", titlePrefix: "Sammelplatz ", labelField: "nr", labelMinZoom: 14, hideFields: ["fid"],
       symbol: "square", color: "#d9480f", sizeFactor: 1.3 },
   ],
 
@@ -181,7 +308,7 @@ let follow    = store.get("follow", false);
 // --- Karte ----------------------------------------------------------
 // Canvas-Renderer: seine "tolerance" bestimmt den Tippbereich für Punkte, Linien und Flächen
 const renderer = L.canvas({ tolerance, padding: 0.5 });
-const map = L.map("map", { renderer, zoomControl: false, tap: true }).setView([46.8, 8.2], 8);
+const map = L.map("map", { renderer, zoomControl: false, tap: true, zoomSnap: 0.25 }).setView([46.8, 8.2], 8);
 L.control.zoom({ position: "topleft" }).addTo(map);
 L.control.scale({ imperial: false }).addTo(map);
 
@@ -215,7 +342,7 @@ const waLink = (title, lat, lon) => "https://wa.me/?text=" + encodeURIComponent(
 function toast(msg){
   const t = document.getElementById("toast");
   t.textContent = msg; t.hidden = false;
-  clearTimeout(toast._t); toast._t = setTimeout(() => t.hidden = true, 2200);
+  clearTimeout(toast._t); toast._t = setTimeout(() => t.hidden = true, msg.length > 40 ? 8000 : 2200);
 }
 async function copy(text){
   try { await navigator.clipboard.writeText(text); toast("Kopiert"); }
@@ -229,8 +356,9 @@ function popupHtml(title, lat, lon, props, lyr){
   const lv = toLV95(lat, lon);
   let rows = "";
   if (props) for (const [k, v] of Object.entries(props)) {
-    if ((lyr && k === lyr.nameField) || v === null || v === "") continue;
-    rows += `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`;
+    if ((lyr && (k === lyr.nameField || (lyr.hideFields || []).includes(k))) || v === null || v === "") continue;
+    const val = v === true ? "ja" : v === false ? "nein" : v;
+    rows += `<tr><td>${esc(k)}</td><td>${esc(val)}</td></tr>`;
   }
   return `<div class="pop">
     ${lyr ? `<div class="pop-layer">${esc(lyr.name)}</div>` : ""}
@@ -283,13 +411,33 @@ function legendIcon(lyr){
   return `<img src="${c.toDataURL()}" width="18" height="18" alt="" style="vertical-align:-4px;margin-right:4px">`;
 }
 
+// --- Koordinaten ---------------------------------------------------
+// Erkennt Schweizer Koordinaten (LV95 / LV03) und rechnet sie in WGS84 um
+function swissToWGS(E, N){
+  if (E > 2000000) { E -= 2000000; N -= 1000000; }        // LV95 → LV03
+  const y = (E - 600000) / 1e6, x = (N - 200000) / 1e6;
+  const lon = 2.6779094 + 4.728982*y + 0.791484*y*x + 0.1306*y*x*x - 0.0436*y*y*y;
+  const lat = 16.9023892 + 3.238272*x - 0.270978*y*y - 0.002528*x*x - 0.0447*y*y*x - 0.0140*x*x*x;
+  return [lat * 100/36, lon * 100/36];
+}
+const coordsToLatLng = c => {
+  if (Math.abs(c[0]) > 1000 || Math.abs(c[1]) > 1000) {   // keine Grad-Werte → Schweizer System
+    const [lat, lon] = swissToWGS(c[0], c[1]);
+    return L.latLng(lat, lon);
+  }
+  return L.latLng(c[1], c[0]);
+};
+
 // --- Daten laden ----------------------------------------------------
 const layerControl = L.control.layers(null, null, { position: "topright", collapsed: true }).addTo(map);
 const loaded = [];   // [{ cfg, layer }]
 
 function buildLayer(lyr, geojson){
   const radius = () => pointSize * (lyr.sizeFactor || 1);
+  const n = (geojson.features || []).length;
+  if (!n) return;   // leere Ebene (noch keine Daten eingefügt)
   const gl = L.geoJSON(geojson, {
+    coordsToLatLng,
     pointToLayer: (f, latlng) => new ShapeMarker(latlng, {
       renderer, shape: lyr.symbol, radius: radius(), color: "#fff", weight: 2,
       fillColor: lyr.color, fillOpacity: 1
@@ -300,14 +448,14 @@ function buildLayer(lyr, geojson){
       : { color: lyr.color, weight: 3, fillColor: lyr.color, fillOpacity: 0.25 },
     onEachFeature: (f, layer) => {
       const props = f.properties || {};
-      const title = props[lyr.nameField] || lyr.name;
+      const title = props[lyr.nameField] != null ? (lyr.titlePrefix || "") + props[lyr.nameField] : lyr.name;
       const isPoint = !!layer.getLatLng;
       // Beschriftung neben dem Symbol (bei Flächen in der Mitte)
       const label = lyr.labelField ? props[lyr.labelField] : null;
       if (label !== null && label !== undefined && label !== "") {
         layer.bindTooltip(esc(label), isPoint
-          ? { permanent: true, direction: "right", offset: [radius() + 2, 0], className: "pt-label" }
-          : { permanent: true, direction: "center", className: "pt-label" });
+          ? { permanent: true, direction: "right", offset: [radius() + 2, 0], className: "pt-label lbl-" + CONFIG.layers.indexOf(lyr) }
+          : { permanent: true, direction: "center", className: "pt-label lbl-" + CONFIG.layers.indexOf(lyr) });
       }
       layer.on("click", e => {
         // Punkte: Punktkoordinate; Flächen: Mittelpunkt; Linien: angetippte Stelle
@@ -327,15 +475,26 @@ function buildLayer(lyr, geojson){
 Promise.all(CONFIG.layers.map(lyr =>
   (lyr.dataUrl ? fetch(lyr.dataUrl).then(r => r.json()) : Promise.resolve(lyr.data))
     .then(gj => gj && buildLayer(lyr, gj))
-    .catch(() => toast(`«${lyr.name}» konnte nicht geladen werden`))
+    .catch(err => toast(location.protocol === "file:"
+      ? `«${lyr.name}»: Externe .geojson-Dateien laden nur auf einem Webserver. GeoJSON direkt einfügen (data:) oder Seite über https öffnen.`
+      : `«${lyr.name}»: Datei «${lyr.dataUrl}» nicht gefunden oder kein gültiges GeoJSON.`))
 )).then(() => {
   // Reihenfolge wie in CONFIG (letzte oben)
   loaded.sort((a, b) => CONFIG.layers.indexOf(a.cfg) - CONFIG.layers.indexOf(b.cfg))
         .forEach(o => o.layer.bringToFront());
   const bounds = L.latLngBounds([]);
   loaded.forEach(o => { const b = o.layer.getBounds(); if (b.isValid()) bounds.extend(b); });
-  if (bounds.isValid()) map.fitBounds(bounds, { padding: [40, 40], maxZoom: 16 });
+  if (bounds.isValid()) map.fitBounds(bounds, { padding: [20, 20], maxZoom: 17 });
 });
+
+// Beschriftungen je nach Zoomstufe ein-/ausblenden
+const lblStyle = document.createElement("style"); document.head.appendChild(lblStyle);
+function updateLabels(){
+  const z = map.getZoom();
+  lblStyle.textContent = CONFIG.layers.map((l, i) =>
+    z < (l.labelMinZoom || 0) ? `.lbl-${i}{display:none}` : "").join("");
+}
+map.on("zoomend", updateLabels); updateLabels();
 
 // Beliebige Stelle lange drücken / Rechtsklick → Position teilen
 map.on("contextmenu", e => {
