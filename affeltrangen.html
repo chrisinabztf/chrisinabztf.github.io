@@ -251,11 +251,17 @@ const DATA_PUNKTE = {
   ]
 };
 
-// Sammelplätze Affeltrangen: Inhalt von Sammelplaetze_Affeltrangen.geojson hier einfügen
 const DATA_SAMMELPLAETZE = {
   "type": "FeatureCollection",
   "features": [
-      ]
+    {"type":"Feature","properties":{"fid_1":1,"fid":1,"ID":null,"KooX":null,"KooY":null,"Bemerkungen":null},"geometry":{"type":"Point","coordinates":[9.0538557,47.5262534]}},
+    {"type":"Feature","properties":{"fid_1":2,"fid":2,"ID":null,"KooX":null,"KooY":null,"Bemerkungen":null},"geometry":{"type":"Point","coordinates":[9.0741104,47.5252816]}},
+    {"type":"Feature","properties":{"fid_1":3,"fid":3,"ID":null,"KooX":null,"KooY":null,"Bemerkungen":null},"geometry":{"type":"Point","coordinates":[9.0615434,47.5242007]}},
+    {"type":"Feature","properties":{"fid_1":4,"fid":4,"ID":null,"KooX":null,"KooY":null,"Bemerkungen":null},"geometry":{"type":"Point","coordinates":[9.0392616,47.5331702]}},
+    {"type":"Feature","properties":{"fid_1":5,"fid":5,"ID":null,"KooX":null,"KooY":null,"Bemerkungen":null},"geometry":{"type":"Point","coordinates":[9.0456499,47.5337779]}},
+    {"type":"Feature","properties":{"fid_1":6,"fid":6,"ID":null,"KooX":null,"KooY":null,"Bemerkungen":null},"geometry":{"type":"Point","coordinates":[9.0267717,47.5388818]}},
+    {"type":"Feature","properties":{"fid_1":7,"fid":7,"ID":null,"KooX":null,"KooY":null,"Bemerkungen":null},"geometry":{"type":"Point","coordinates":[9.0136969,47.5364437]}}
+  ]
 };
 
 /* ================================================================
@@ -274,6 +280,7 @@ const CONFIG = {
   //   sizeFactor : Grösse relativ zur eingestellten Punktgrösse (1 = gleich gross)
   //   titlePrefix: Text vor dem Titel im Popup (z.B. "Stand ")
   //   hideFields : Attribute, die im Popup nicht erscheinen sollen
+  //   labelPrefix: Text vor der Beschriftung (z.B. "S" → S1, S2 …)
   //   labelMinZoom: Beschriftung erst ab dieser Zoomstufe zeigen (verhindert Überlappen)
   layers: [
     { name: "Stände",       data: DATA_PUNKTE,        dataUrl: null,
@@ -282,7 +289,8 @@ const CONFIG = {
       symbol: "circle", color: "#1f6f50", sizeFactor: 1 },
 
     { name: "Sammelplätze", data: DATA_SAMMELPLAETZE, dataUrl: null,
-      nameField: "nr", titlePrefix: "Sammelplatz ", labelField: "nr", labelMinZoom: 14, hideFields: ["fid"],
+      nameField: "fid", titlePrefix: "Sammelplatz ", labelField: "fid", labelPrefix: "S", labelMinZoom: 14,
+      hideFields: ["fid_1", "fid", "ID", "KooX", "KooY"],
       symbol: "square", color: "#d9480f", sizeFactor: 1.3 },
   ],
 
@@ -453,7 +461,7 @@ function buildLayer(lyr, geojson){
       // Beschriftung neben dem Symbol (bei Flächen in der Mitte)
       const label = lyr.labelField ? props[lyr.labelField] : null;
       if (label !== null && label !== undefined && label !== "") {
-        layer.bindTooltip(esc(label), isPoint
+        layer.bindTooltip(esc((lyr.labelPrefix || "") + label), isPoint
           ? { permanent: true, direction: "right", offset: [radius() + 2, 0], className: "pt-label lbl-" + CONFIG.layers.indexOf(lyr) }
           : { permanent: true, direction: "center", className: "pt-label lbl-" + CONFIG.layers.indexOf(lyr) });
       }
