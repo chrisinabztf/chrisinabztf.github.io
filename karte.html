@@ -38,7 +38,7 @@
 
   .btn{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:8px;padding:8px 12px;
        font:600 14px var(--font);cursor:pointer;text-decoration:none}
-  .btn-wa{background:var(--wa);color:#fff}
+  .btn-wa, .leaflet-container a.btn-wa{background:var(--wa);color:#fff}
   .btn-sec{background:transparent;color:var(--fg);border:1px solid var(--line)}
   .btn svg{width:16px;height:16px}
 
@@ -58,6 +58,14 @@
   .pop td:first-child{color:#667}
   .pop .coord{font-family:var(--mono);font-size:12px}
   .pop .row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .pop-layer{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#667;margin-bottom:2px}
+  .leaflet-control-layers{font:14px var(--font)}
+  .leaflet-control-layers-overlays label{padding:4px 0}
+  /* Beschriftung neben den Punkten */
+  .leaflet-tooltip.pt-label{background:transparent;border:0;box-shadow:none;padding:0;
+       font:700 13px var(--font);color:#1d2a24;
+       text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff,0 0 3px #fff}
+  .leaflet-tooltip.pt-label::before{display:none}
   #toast{position:fixed;left:50%;transform:translateX(-50%);top:calc(16px + env(safe-area-inset-top,0px));
        z-index:2000;background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px}
 </style>
@@ -106,30 +114,56 @@
 
 <script>
 /* ================================================================
+   DATEN – GeoJSON aus QGIS (Exportieren → Objekte speichern als…,
+   Format GeoJSON, KBS EPSG:4326). Inhalt der Datei hier einfügen.
+   ================================================================ */
+const DATA_PUNKTE = {
+  "type": "FeatureCollection",
+  "features": [
+    {"type":"Feature","properties":{"nr":1,"name":"Kapellbrücke","beschreibung":"Beispielpunkt"},"geometry":{"type":"Point","coordinates":[8.3077,47.0516]}},
+    {"type":"Feature","properties":{"nr":2,"name":"Bundeshaus","beschreibung":"Beispielpunkt"},"geometry":{"type":"Point","coordinates":[7.4440,46.9466]}},
+    {"type":"Feature","properties":{"nr":3,"name":"Rheinfall","beschreibung":"Beispielpunkt"},"geometry":{"type":"Point","coordinates":[8.6150,47.6779]}}
+  ]
+};
+
+const DATA_SAMMELPLAETZE = {
+  "type": "FeatureCollection",
+  "features": [
+    {"type":"Feature","properties":{"nr":"S1","name":"Inseli","bemerkung":"Beispiel-Sammelplatz"},"geometry":{"type":"Point","coordinates":[8.3112,47.0497]}},
+    {"type":"Feature","properties":{"nr":"S2","name":"Kleine Schanze","bemerkung":"Beispiel-Sammelplatz"},"geometry":{"type":"Point","coordinates":[7.4405,46.9457]}},
+    {"type":"Feature","properties":{"nr":"S3","name":"Schlössli Wörth","bemerkung":"Beispiel-Sammelplatz"},"geometry":{"type":"Point","coordinates":[8.6125,47.6772]}}
+  ]
+};
+
+/* ================================================================
    KONFIGURATION – hier anpassen
    ================================================================ */
 const CONFIG = {
   title: "Webkarte",
-  // Entweder: Pfad zu einer GeoJSON-Datei neben dieser HTML-Datei (z.B. "punkte.geojson")
-  dataUrl: "staende.geojson",
-  // Name des Attributs, das als Titel im Popup erscheint
-  nameField: "name",
+
+  // Eine Zeile pro GeoJSON-Ebene. Reihenfolge = Zeichenreihenfolge (letzte liegt oben).
+  //   data       : Variable von oben (eingefügtes GeoJSON) – ODER –
+  //   dataUrl    : Dateiname einer .geojson-Datei neben dieser HTML-Datei (dann data: null)
+  //   nameField  : Attribut für den Titel im Popup
+  //   labelField : Attribut, das neben dem Symbol steht (null = keine Beschriftung)
+  //   symbol     : "circle" | "square" | "triangle" | "diamond" | "star"
+  //   color      : Füllfarbe
+  //   sizeFactor : Grösse relativ zur eingestellten Punktgrösse (1 = gleich gross)
+  layers: [
+    { name: "Punkte",       data: DATA_PUNKTE,        dataUrl: null,
+      nameField: "name", labelField: "nr",
+      symbol: "circle", color: "#1f6f50", sizeFactor: 1 },
+
+    { name: "Sammelplätze", data: DATA_SAMMELPLAETZE, dataUrl: null,
+      nameField: "name", labelField: "nr",
+      symbol: "square", color: "#d9480f", sizeFactor: 1.3 },
+  ],
+
   // Standardwerte (Benutzer kann sie in den Einstellungen ändern)
   defaultTolerance: 15,   // Tippbereich in Pixel
-  defaultPointSize: 8,    // Punktradius in Pixel
-  pointColor: "#1f6f50",
+  defaultPointSize: 8,    // Punktgrösse in Pixel
   // Hintergrundkarte: "osm" oder "swisstopo"
   basemap: "swisstopo",
-};
-
-/* Oder: GeoJSON direkt hier einfügen (aus QGIS als GeoJSON, EPSG:4326 exportiert) */
-const DATA = {
-  "type": "FeatureCollection",
-  "features": [
-    {"type":"Feature","properties":{"name":"Kapellbrücke","beschreibung":"Beispielpunkt"},"geometry":{"type":"Point","coordinates":[8.3077,47.0516]}},
-    {"type":"Feature","properties":{"name":"Bundeshaus","beschreibung":"Beispielpunkt"},"geometry":{"type":"Point","coordinates":[7.4440,46.9466]}},
-    {"type":"Feature","properties":{"name":"Rheinfall","beschreibung":"Beispielpunkt"},"geometry":{"type":"Point","coordinates":[8.6150,47.6779]}}
-  ]
 };
 /* ================================================================ */
 
@@ -191,14 +225,15 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":
 
 const WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>';
 
-function popupHtml(title, lat, lon, props){
+function popupHtml(title, lat, lon, props, lyr){
   const lv = toLV95(lat, lon);
   let rows = "";
   if (props) for (const [k, v] of Object.entries(props)) {
-    if (k === CONFIG.nameField || v === null || v === "") continue;
+    if ((lyr && k === lyr.nameField) || v === null || v === "") continue;
     rows += `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`;
   }
   return `<div class="pop">
+    ${lyr ? `<div class="pop-layer">${esc(lyr.name)}</div>` : ""}
     <h3>${esc(title)}</h3>
     ${rows ? `<table>${rows}</table>` : ""}
     <div class="coord">${fmt(lat, lon)}</div>
@@ -213,36 +248,94 @@ document.addEventListener("click", e => {
   if (b) copy(b.getAttribute("data-copy"));
 });
 
+// --- Symbole --------------------------------------------------------
+// Eigene Formen auf dem Canvas: nutzen denselben Tippbereich wie die Kreise
+const ShapeMarker = L.CircleMarker.extend({
+  options: { shape: "circle" },
+  _updatePath(){
+    const r = this._renderer;
+    if (this.options.shape === "circle" || !r._ctx) return L.CircleMarker.prototype._updatePath.call(this);
+    if (!r._drawing || this._empty()) return;
+    const ctx = r._ctx, x = this._point.x, y = this._point.y, s = this._radius;
+    ctx.beginPath();
+    tracePath(ctx, this.options.shape, x, y, s);
+    r._fillStroke(ctx, this);
+  }
+});
+function tracePath(ctx, shape, x, y, s){
+  if (shape === "square") { const q = s * 0.85; ctx.rect(x - q, y - q, 2*q, 2*q); }
+  else if (shape === "triangle") { ctx.moveTo(x, y - s); ctx.lineTo(x + s*0.95, y + s*0.75); ctx.lineTo(x - s*0.95, y + s*0.75); ctx.closePath(); }
+  else if (shape === "diamond") { ctx.moveTo(x, y - s); ctx.lineTo(x + s, y); ctx.lineTo(x, y + s); ctx.lineTo(x - s, y); ctx.closePath(); }
+  else if (shape === "star") {
+    for (let i = 0; i < 10; i++) {
+      const a = -Math.PI/2 + i*Math.PI/5, rr = i % 2 ? s*0.45 : s;
+      i ? ctx.lineTo(x + rr*Math.cos(a), y + rr*Math.sin(a)) : ctx.moveTo(x + rr*Math.cos(a), y + rr*Math.sin(a));
+    }
+    ctx.closePath();
+  }
+  else ctx.arc(x, y, s, 0, Math.PI*2);
+}
+// Kleines Symbol für die Ebenenauswahl (Legende)
+function legendIcon(lyr){
+  const c = document.createElement("canvas"); c.width = c.height = 36;
+  const ctx = c.getContext("2d"); ctx.beginPath(); tracePath(ctx, lyr.symbol, 18, 18, 12);
+  ctx.fillStyle = lyr.color; ctx.fill(); ctx.lineWidth = 3; ctx.strokeStyle = "#fff"; ctx.stroke();
+  return `<img src="${c.toDataURL()}" width="18" height="18" alt="" style="vertical-align:-4px;margin-right:4px">`;
+}
+
 // --- Daten laden ----------------------------------------------------
-let dataLayer;
-function addData(geojson){
-  if (dataLayer) map.removeLayer(dataLayer);
-  dataLayer = L.geoJSON(geojson, {
-    pointToLayer: (f, latlng) => L.circleMarker(latlng, {
-      renderer, radius: pointSize, color: "#fff", weight: 2,
-      fillColor: CONFIG.pointColor, fillOpacity: 1
+const layerControl = L.control.layers(null, null, { position: "topright", collapsed: true }).addTo(map);
+const loaded = [];   // [{ cfg, layer }]
+
+function buildLayer(lyr, geojson){
+  const radius = () => pointSize * (lyr.sizeFactor || 1);
+  const gl = L.geoJSON(geojson, {
+    pointToLayer: (f, latlng) => new ShapeMarker(latlng, {
+      renderer, shape: lyr.symbol, radius: radius(), color: "#fff", weight: 2,
+      fillColor: lyr.color, fillOpacity: 1
     }),
-    style: () => ({ renderer, color: CONFIG.pointColor, weight: 3, fillOpacity: 0.25 }),
+    // Punkte: weisser Rand, volle Füllung; Linien/Flächen: farbiger Rand, halbtransparent
+    style: f => /Point/.test(f.geometry && f.geometry.type)
+      ? { color: "#fff", weight: 2, fillColor: lyr.color, fillOpacity: 1 }
+      : { color: lyr.color, weight: 3, fillColor: lyr.color, fillOpacity: 0.25 },
     onEachFeature: (f, layer) => {
-      const title = (f.properties && f.properties[CONFIG.nameField]) || "Punkt";
+      const props = f.properties || {};
+      const title = props[lyr.nameField] || lyr.name;
+      const isPoint = !!layer.getLatLng;
+      // Beschriftung neben dem Symbol (bei Flächen in der Mitte)
+      const label = lyr.labelField ? props[lyr.labelField] : null;
+      if (label !== null && label !== undefined && label !== "") {
+        layer.bindTooltip(esc(label), isPoint
+          ? { permanent: true, direction: "right", offset: [radius() + 2, 0], className: "pt-label" }
+          : { permanent: true, direction: "center", className: "pt-label" });
+      }
       layer.on("click", e => {
-        // Punkte: Koordinate des Punktes; Linien/Flächen: angetippte Stelle
-        const ll = layer.getLatLng ? layer.getLatLng() : e.latlng;
+        // Punkte: Punktkoordinate; Flächen: Mittelpunkt; Linien: angetippte Stelle
+        const ll = isPoint ? layer.getLatLng()
+                 : (f.geometry && /Polygon/.test(f.geometry.type) ? layer.getCenter() : e.latlng);
         L.popup({ maxWidth: 300 }).setLatLng(ll)
-          .setContent(popupHtml(title, ll.lat, ll.lng, f.properties)).openOn(map);
+          .setContent(popupHtml(title, ll.lat, ll.lng, props, lyr)).openOn(map);
         L.DomEvent.stop(e);
       });
     }
   }).addTo(map);
-  const b = dataLayer.getBounds();
-  if (b.isValid()) map.fitBounds(b, { padding: [40, 40], maxZoom: 16 });
+  gl._radius = radius;
+  layerControl.addOverlay(gl, legendIcon(lyr) + esc(lyr.name));
+  loaded.push({ cfg: lyr, layer: gl });
 }
-if (CONFIG.dataUrl) {
-  fetch(CONFIG.dataUrl).then(r => r.json()).then(addData)
-    .catch(() => toast("GeoJSON konnte nicht geladen werden"));
-} else {
-  addData(DATA);
-}
+
+Promise.all(CONFIG.layers.map(lyr =>
+  (lyr.dataUrl ? fetch(lyr.dataUrl).then(r => r.json()) : Promise.resolve(lyr.data))
+    .then(gj => gj && buildLayer(lyr, gj))
+    .catch(() => toast(`«${lyr.name}» konnte nicht geladen werden`))
+)).then(() => {
+  // Reihenfolge wie in CONFIG (letzte oben)
+  loaded.sort((a, b) => CONFIG.layers.indexOf(a.cfg) - CONFIG.layers.indexOf(b.cfg))
+        .forEach(o => o.layer.bringToFront());
+  const bounds = L.latLngBounds([]);
+  loaded.forEach(o => { const b = o.layer.getBounds(); if (b.isValid()) bounds.extend(b); });
+  if (bounds.isValid()) map.fitBounds(bounds, { padding: [40, 40], maxZoom: 16 });
+});
 
 // Beliebige Stelle lange drücken / Rechtsklick → Position teilen
 map.on("contextmenu", e => {
@@ -313,7 +406,12 @@ $tol.oninput = () => {
 };
 $size.oninput = () => {
   pointSize = +$size.value;
-  if (dataLayer) dataLayer.eachLayer(l => l.setRadius && l.setRadius(pointSize));
+  loaded.forEach(o => o.layer.eachLayer(l => {
+    if (!l.setRadius) return;
+    l.setRadius(o.layer._radius());
+    const t = l.getTooltip && l.getTooltip();
+    if (t) { t.options.offset = [o.layer._radius() + 2, 0]; l.closeTooltip(); l.openTooltip(); }
+  }));
   store.set("size", pointSize); showVals();
 };
 $follow.onchange = () => { follow = $follow.checked; store.set("follow", follow); };

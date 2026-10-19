@@ -1,0 +1,12 @@
+{
+"type": "FeatureCollection",
+"name": "Sammelplaetze_Lommis",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{"type":"Feature","properties":{"fid":1,"nr":"Kaa"},"geometry":{"type":"Point","coordinates":[9.009288279085482,47.510814045263793]}},
+{"type":"Feature","properties":{"fid":2,"nr":"Mitteltrieb Süd"},"geometry":{"type":"Point","coordinates":[8.999443607087604,47.505958765282593]}},
+{"type":"Feature","properties":{"fid":3,"nr":"Mitteltrieb Nord"},"geometry":{"type":"Point","coordinates":[8.999847271882503,47.51030544170753]}},
+{"type":"Feature","properties":{"fid":4,"nr":"Fuchsloch"},"geometry":{"type":"Point","coordinates":[8.997535330288557,47.498629609407573]}},
+{"type":"Feature","properties":{"fid":5,"nr":"Hütte"},"geometry":{"type":"Point","coordinates":[8.990419289276907,47.509665043307791]}}
+]
+}
