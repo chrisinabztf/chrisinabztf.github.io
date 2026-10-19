@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"name": "Sammelplaetze_Affeltrangen",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::2056" } },
+"features": [
+{"type":"Feature","properties":{"fid_1":1,"fid":1,"ID":null,"KooX":null,"KooY":null,"Bemerkungen":null},"geometry":{"type":"Point","coordinates":[2721635.288637381512672,1265197.956079096067697,0.0]}},
+{"type":"Feature","properties":{"fid_1":2,"fid":2,"ID":null,"KooX":null,"KooY":null,"Bemerkungen":null},"geometry":{"type":"Point","coordinates":[2723162.603565149474889,1265121.527162407757714,0.0]}},
+{"type":"Feature","properties":{"fid_1":3,"fid":3,"ID":null,"KooX":null,"KooY":null,"Bemerkungen":null},"geometry":{"type":"Point","coordinates":[2722218.851103175897151,1264981.711982856271788,0.0]}},
+{"type":"Feature","properties":{"fid_1":4,"fid":4,"ID":null,"KooX":null,"KooY":null,"Bemerkungen":null},"geometry":{"type":"Point","coordinates":[2720520.74059159681201,1265944.328016980551183,0.0]}},
+{"type":"Feature","properties":{"fid_1":5,"fid":5,"ID":null,"KooX":null,"KooY":null,"Bemerkungen":null},"geometry":{"type":"Point","coordinates":[2721000.297883753664792,1266021.718642059480771,0.0]}},
+{"type":"Feature","properties":{"fid_1":6,"fid":6,"ID":null,"KooX":null,"KooY":null,"Bemerkungen":null},"geometry":{"type":"Point","coordinates":[2719567.579132292419672,1266560.145725942682475,0.0]}},
+{"type":"Feature","properties":{"fid_1":7,"fid":7,"ID":null,"KooX":null,"KooY":null,"Bemerkungen":null},"geometry":{"type":"Point","coordinates":[2718588.786162544507533,1266269.269423563033342,0.0]}}
+]
+}
